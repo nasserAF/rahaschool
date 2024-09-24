@@ -1,0 +1,14 @@
+[
+    {
+        "grade_id": 1,
+        "section_id": "sec_1A",
+        "subject_id": "subj_math_1",
+        "teacher_id": "t_001"
+    },
+    {
+        "grade_id": 1,
+        "section_id": "sec_1A",
+        "subject_id": "subj_arabic_1",
+        "teacher_id": "t_002"
+    }
+]

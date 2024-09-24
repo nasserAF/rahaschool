@@ -1,0 +1,42 @@
+[
+  {
+    "teacher_id": "t_001",
+    "name": "آلاء",
+    "subjects": [
+      "subj_art_4"
+    ]
+  },
+  {
+    "teacher_id": "t_002",
+    "name": "حنان",
+    "subjects": [
+      "subj_social_studies_1",
+      "subj_social_studies_2",
+      "subj_social_studies_3"
+    ]
+  },
+  {
+    "teacher_id": "t_003",
+    "name": "تغريد",
+    "subjects": [
+      "subj_arabic_1",
+      "subj_arabic_2",
+      "subj_arabic_3",
+      "subj_arabic_4",
+      "subj_arabic_5",
+      "subj_arabic_6",
+      "subj_arabic_7",
+      "subj_arabic_8"
+    ]
+  },
+  {
+    "teacher_id": "t-004",
+    "name": "سميرة",
+    "subjects": [
+      "subj_arabic_1",
+      "subj_arabic_2",
+      "subj_arabic_3",
+      "subj_arabic_4"
+    ]
+  }
+]

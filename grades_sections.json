@@ -1,0 +1,184 @@
+[
+  {
+    "grade_id": 1,
+    "grade_name": "الصف الأول",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 6,
+      "الثلاثاء": 6,
+      "الأربعاء": 6,
+      "الخميس": 6
+    },
+    "sections": [
+      {
+        "section_id": "sec_1A",
+        "section_name": "الشعبة أ"
+      },
+      {
+        "section_id": "sec_1B",
+        "section_name": "الشعبة ب"
+      },
+      {
+        "section_id": "sec_1C",
+        "section_name": "الشعبة ج"
+      }
+    ]
+  },
+  {
+    "grade_id": 2,
+    "grade_name": "الصف الثاني",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 6,
+      "الثلاثاء": 6,
+      "الأربعاء": 6,
+      "الخميس": 6
+    },
+    "sections": [
+      {
+        "section_id": "sec_2A",
+        "section_name": "الشعبة أ"
+      },
+      {
+        "section_id": "sec_2B",
+        "section_name": "الشعبة ب"
+      }
+    ]
+  },
+  {
+    "grade_id": 3,
+    "grade_name": "الصف الثالث",
+    "periods_per_day": {
+      "الأحد": 6,
+      "الإثنين": 6,
+      "الثلاثاء": 6,
+      "الأربعاء": 6,
+      "الخميس": 6
+    },
+    "sections": [
+      {
+        "section_id": "sec_3A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  },
+  {
+    "grade_id": 4,
+    "grade_name": "الصف الرابع",
+    "periods_per_day": {
+      "الأحد": 5,
+      "الإثنين": 5,
+      "الثلاثاء": 5,
+      "الأربعاء": 5,
+      "الخميس": 5
+    },
+    "sections": [
+      {
+        "section_id": "sec_4A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  },
+  {
+    "grade_id": 5,
+    "grade_name": "الصف الخامس",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 7,
+      "الثلاثاء": 7,
+      "الأربعاء": 6,
+      "الخميس": 4
+    },
+    "sections": [
+      {
+        "section_id": "sec_5A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  },
+  {
+    "grade_id": 6,
+    "grade_name": "الصف السادس",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 7,
+      "الثلاثاء": 7,
+      "الأربعاء": 6,
+      "الخميس": 6
+    },
+    "sections": [
+      {
+        "section_id": "sec_6A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  },
+  {
+    "grade_id": 7,
+    "grade_name": "الصف السابع",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 7,
+      "الثلاثاء": 7,
+      "الأربعاء": 7,
+      "الخميس": 6
+    },
+    "sections": [
+      {
+        "section_id": "sec_7A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  },
+  {
+    "grade_id": 8,
+    "grade_name": "الصف الثامن",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 7,
+      "الثلاثاء": 7,
+      "الأربعاء": 7,
+      "الخميس": 6
+    },
+    "sections": [
+      {
+        "section_id": "sec_8A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  },
+  {
+    "grade_id": 9,
+    "grade_name": "الصف التاسع",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 7,
+      "الثلاثاء": 7,
+      "الأربعاء": 7,
+      "الخميس": 7
+    },
+    "sections": [
+      {
+        "section_id": "sec_9A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  },
+  {
+    "grade_id": 10,
+    "grade_name": "الصف العاشر",
+    "periods_per_day": {
+      "الأحد": 7,
+      "الإثنين": 7,
+      "الثلاثاء": 7,
+      "الأربعاء": 7,
+      "الخميس": 7
+    },
+    "sections": [
+      {
+        "section_id": "sec_10A",
+        "section_name": "الشعبة أ"
+      }
+    ]
+  }
+]

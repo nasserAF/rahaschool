@@ -1,0 +1,594 @@
+[
+  {
+    "subject_id": "subj_math_1",
+    "name": "الرياضيات",
+    "grade_id": 1,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_1",
+    "name": "اللغة العربية",
+    "grade_id": 1,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_1",
+    "name": "اللغة الإنجليزية",
+    "grade_id": 1,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_relegion_1",
+    "name": "التربية الإسلامية",
+    "grade_id": 1,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_1",
+    "name": "علوم",
+    "grade_id": 1,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_social_studies_1",
+    "name": "دراسات إجتماعية",
+    "grade_id": 1,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "subj_art_1",
+    "name": "التربية الفنية",
+    "grade_id": 1,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_math_2",
+    "name": "الرياضيات",
+    "grade_id": 2,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_2",
+    "name": "اللغة العربية",
+    "grade_id": 2,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_2",
+    "name": "اللغة الإنجليزية",
+    "grade_id": 2,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_relegion_2",
+    "name": "التربية الإسلامية",
+    "grade_id": 2,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_2",
+    "name": "علوم",
+    "grade_id": 2,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_social_studies_2",
+    "name": "دراسات إجتماعية",
+    "grade_id": 2,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "subj_art_2",
+    "name": "التربية الفنية",
+    "grade_id": 2,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_math_3",
+    "name": "الرياضيات",
+    "grade_id": 3,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_3",
+    "name": "اللغة العربية",
+    "grade_id": 3,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_3",
+    "name": "اللغة الإنجليزية",
+    "grade_id": 3,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_relegion_3",
+    "name": "التربية الإسلامية",
+    "grade_id": 3,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_3",
+    "name": "علوم",
+    "grade_id": 3,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_social_studies_3",
+    "name": "دراسات إجتماعية",
+    "grade_id": 3,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "subj_art_3",
+    "name": "التربية الفنية",
+    "grade_id": 3,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_math_4",
+    "name": "الرياضيات",
+    "grade_id": 4,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_4",
+    "name": "اللغة العربية",
+    "grade_id": 4,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_4",
+    "name": "اللغة الانجليزية",
+    "grade_id": 4,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_4",
+    "name": "العلوم",
+    "grade_id": 4,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_religion_4",
+    "name": "التربية الاسلامية",
+    "grade_id": 4,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_social_studies_4",
+    "name": "الدراسات الإجتماعية",
+    "grade_id": 4,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "subj_vocational_education_4",
+    "name": "التربية المهنية",
+    "grade_id": 4,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_art_4",
+    "name": "التربية الفنية",
+    "grade_id": 4,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_math_5",
+    "name": "الرياضيات",
+    "grade_id": 5,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_5",
+    "name": "اللغة العربية",
+    "grade_id": 5,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_5",
+    "name": "اللغة الانجليزية",
+    "grade_id": 5,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_5",
+    "name": "العلوم",
+    "grade_id": 5,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_religion_5",
+    "name": "التربية الاسلامية",
+    "grade_id": 5,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_social_studies_5",
+    "name": "الدراسات الإجتماعية",
+    "grade_id": 5,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "subj_vocational_education_5",
+    "name": "التربية المهنية",
+    "grade_id": 5,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_art_5",
+    "name": "التربية الفنية",
+    "grade_id": 5,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_math_6",
+    "name": "الرياضيات",
+    "grade_id": 6,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_6",
+    "name": "اللغة العربية",
+    "grade_id": 6,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_6",
+    "name": "اللغة الانجليزية",
+    "grade_id": 6,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_6",
+    "name": "العلوم",
+    "grade_id": 6,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_religion_6",
+    "name": "التربية الاسلامية",
+    "grade_id": 6,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "national_education_6",
+    "name": "التربية الوطنية",
+    "grade_id": 6,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "history_6",
+    "name": "التاريخ",
+    "grade_id": 6,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "geography_6",
+    "name": "الجغرافيا",
+    "grade_id": 6,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "vocational_education_6",
+    "name": "التربية المهنية",
+    "grade_id": 6,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_art_6",
+    "name": "التربية الفنية",
+    "grade_id": 6,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_math_7",
+    "name": "الرياضيات",
+    "grade_id": 7,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_7",
+    "name": "اللغة العربية",
+    "grade_id": 7,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_7",
+    "name": "اللغة الانجليزية",
+    "grade_id": 7,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_7",
+    "name": "العلوم",
+    "grade_id": 7,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_religion_7",
+    "name": "التربية الاسلامية",
+    "grade_id": 7,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "social_studies_7",
+    "name": "الدراسات الإجتماعية",
+    "grade_id": 7,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "financial_education_7",
+    "name": "الثقافة المالية",
+    "grade_id": 7,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "computer_science_7",
+    "name": "الحاسوب",
+    "grade_id": 7,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "vocational_education_7",
+    "name": "التربية المهنية",
+    "grade_id": 7,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_art_7",
+    "name": "التربية الفنية",
+    "grade_id": 7,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_math_8",
+    "name": "الرياضيات",
+    "grade_id": 8,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_8",
+    "name": "اللغة العربية",
+    "grade_id": 8,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_8",
+    "name": "اللغة الانجليزية",
+    "grade_id": 8,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_science_8",
+    "name": "العلوم",
+    "grade_id": 8,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "subj_religion_8",
+    "name": "التربية الاسلامية",
+    "grade_id": 8,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "social_studies_8",
+    "name": "الدراسات الإجتماعية",
+    "grade_id": 8,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "financial_education_8",
+    "name": "الثقافة المالية",
+    "grade_id": 8,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "computer_science_8",
+    "name": "الحاسوب",
+    "grade_id": 8,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "vocational_education_8",
+    "name": "التربية المهنية",
+    "grade_id": 8,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_art_8",
+    "name": "التربية الفنية",
+    "grade_id": 8,
+    "weekly_periods": 1
+  }
+
+
+
+
+  ,
+  {
+    "subject_id": "subj_math_9",
+    "name": "الرياضيات",
+    "grade_id": 9,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_9",
+    "name": "اللغة العربية",
+    "grade_id": 9,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_9",
+    "name": "اللغة الانجليزية",
+    "grade_id": 9,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_religion_9",
+    "name": "التربية الاسلامية",
+    "grade_id": 9,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "chemistry_9",
+    "name": "الكيمياء",
+    "grade_id": 9,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "physics_9",
+    "name": "الفيزياء",
+    "grade_id": 9,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "life_sciences_9",
+    "name": "العلوم الحياتية",
+    "grade_id": 9,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "earth_environmental_sciences_9",
+    "name": "علوم الأرض والبيئة",
+    "grade_id": 9,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "national_education_9",
+    "name": "التربية الوطنية",
+    "grade_id": 9,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "history_9",
+    "name": "التاريخ",
+    "grade_id": 9,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "geography_9",
+    "name": "الجغرافيا",
+    "grade_id": 9,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "computer_science_9",
+    "name": "الحاسوب",
+    "grade_id": 9,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "financial_education_9",
+    "name": "الثقافة المالية",
+    "grade_id": 9,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "vocational_education_9",
+    "name": "التربية المهنية",
+    "grade_id": 9,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_art_9",
+    "name": "التربية الفنية",
+    "grade_id": 9,
+    "weekly_periods": 1
+  }
+
+
+
+
+  ,
+  {
+    "subject_id": "subj_math_10",
+    "name": "الرياضيات",
+    "grade_id": 10,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_arabic_10",
+    "name": "اللغة العربية",
+    "grade_id": 10,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_english_10",
+    "name": "اللغة الانجليزية",
+    "grade_id": 10,
+    "weekly_periods": 5
+  },
+  {
+    "subject_id": "subj_religion_10",
+    "name": "التربية الاسلامية",
+    "grade_id": 10,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "chemistry_10",
+    "name": "الكيمياء",
+    "grade_id": 10,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "physics_10",
+    "name": "الفيزياء",
+    "grade_id": 10,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "life_sciences_10",
+    "name": "العلوم الحياتية",
+    "grade_id": 10,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "earth_environmental_sciences_10",
+    "name": "علوم الأرض والبيئة",
+    "grade_id": 10,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "national_education_10",
+    "name": "التربية الوطنية",
+    "grade_id": 10,
+    "weekly_periods": 3
+  },
+  {
+    "subject_id": "history_10",
+    "name": "التاريخ",
+    "grade_id": 10,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "geography_10",
+    "name": "الجغرافيا",
+    "grade_id": 10,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "computer_science_10",
+    "name": "الحاسوب",
+    "grade_id": 10,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "financial_education_10",
+    "name": "الثقافة المالية",
+    "grade_id": 10,
+    "weekly_periods": 2
+  },
+  {
+    "subject_id": "vocational_education_10",
+    "name": "التربية المهنية",
+    "grade_id": 10,
+    "weekly_periods": 1
+  },
+  {
+    "subject_id": "subj_art_10",
+    "name": "التربية الفنية",
+    "grade_id": 10,
+    "weekly_periods": 1
+  }
+]
