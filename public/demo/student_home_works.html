@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الواجبات المنزلية - ريان ناصر أبو فاره</title>
+    <!-- ربط ملفات CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>الواجبات المنزلية</h1>
+        <p>اسم الطالب: <strong>ريان ناصر أبو فاره</strong></p>
+        <p>الصف: <strong>التاسع - ب</strong></p>
+
+        <!-- قسم عرض الواجبات الحالية -->
+        <section>
+            <h2>الواجبات الحالية</h2>
+            <input type="text" id="search-input" class="search-input" placeholder="ابحث عن واجب...">
+            <table class="table" id="homework-table">
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th>الوصف</th>
+                        <th>الموعد النهائي</th>
+                        <th>اسم المعلمة</th>
+                        <th>الإجراء</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الرياضيات</td>
+                        <td>حل مسائل الصفحة 45</td>
+                        <td>20 سبتمبر 2024</td>
+                        <td>أ. فاطمة أحمد</td>
+                        <td><button class="btn btn-info" onclick="openPopup('الرياضيات', 'حل مسائل الصفحة 45', 'أ. فاطمة أحمد', '20 سبتمبر 2024')">عرض التفاصيل</button></td>
+                    </tr>
+                    <tr>
+                        <td>اللغة العربية</td>
+                        <td>قراءة الفصل الأول</td>
+                        <td>22 سبتمبر 2024</td>
+                        <td>أ. ليلى حسن</td>
+                        <td><button class="btn btn-info" onclick="openPopup('اللغة العربية', 'قراءة الفصل الأول', 'أ. ليلى حسن', '22 سبتمبر 2024')">عرض التفاصيل</button></td>
+                    </tr>
+                    <tr>
+                        <td>العلوم</td>
+                        <td>مشروع عن الكواكب</td>
+                        <td>25 سبتمبر 2024</td>
+                        <td>أ. نادية خليل</td>
+                        <td><button class="btn btn-info" onclick="openPopup('العلوم', 'مشروع عن الكواكب', 'أ. نادية خليل', '25 سبتمبر 2024')">عرض التفاصيل</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- نافذة الـ Popup لتفاصيل الواجب -->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                <h3>تفاصيل الواجب</h3>
+                <div class="popup-content-details">
+                    <p><strong>المادة:</strong> <span id="subject"></span></p>
+                    <p><strong>الوصف:</strong> <span id="description"></span></p>
+                    <p><strong>اسم المعلمة:</strong> <span id="teacher"></span></p>
+                    <p><strong>الموعد النهائي:</strong> <span id="due-date"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ربط ملفات الجافا سكربت -->
+    <script src="student_home_works.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الأكثر شيوعًا - ريان ناصر أبو فاره</title>
+    <!-- ربط ملفات CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="demo.css">
+    <!-- إضافة بعض الجافاسكريبت لتحسين التفاعل -->
+    <style>
+        /* إضافات CSS خاصة بالـ Accordion */
+        .accordion {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: right;
+            outline: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        .active, .accordion:hover {
+            background-color: #2980b9;
+        }
+
+        .panel {
+            padding: 0 15px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+            border: 1px solid #3498db;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            text-align: right;
+        }
+
+        .panel p {
+            padding: 10px 0;
+            margin: 0;
+            color: #333;
+        }
+    </style>
+    <script>
+        // وظيفة لتشغيل وإيقاف Accordion
+        document.addEventListener("DOMContentLoaded", function() {
+            const accordions = document.querySelectorAll(".accordion");
+
+            accordions.forEach(function(acc) {
+                acc.addEventListener("click", function() {
+                    // إغلاق جميع الأكورديونات الأخرى
+                    accordions.forEach(function(otherAcc) {
+                        if (otherAcc !== acc) {
+                            otherAcc.classList.remove("active");
+                            otherAcc.nextElementSibling.style.display = "none";
+                        }
+                    });
+
+                    // تشغيل/إيقاف الأكورديون الحالي
+                    acc.classList.toggle("active");
+                    const panel = acc.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <!-- قسم الأسئلة الشائعة -->
+        <section>
+            <h2>الأسئلة الأكثر شيوعا</h2>
+
+            <!-- السؤال 1 -->
+            <button class="accordion">1. ما هي المراحل الدراسية المتوفرة في مدرسة الرحى النموذجية؟</button>
+            <div class="panel">
+                <p>نقدم التعليم من مرحلة الروضة حتى الصف العاشر.</p>
+            </div>
+
+            <!-- السؤال 2 -->
+            <button class="accordion">2. أين تقع روضة ومدرسة الرحى النموذجية؟</button>
+            <div class="panel">
+                <p>تقع المدرسة في إربد، الحي الشرقي، شارع الفرناس.</p>
+            </div>
+
+            <!-- السؤال 3 -->
+            <button class="accordion">3. هل الروضة والمدرسة في نفس المبنى؟</button>
+            <div class="panel">
+                <p>لا، الروضة والمدرسة في مبنيين منفصلين لضمان توفير البيئة المناسبة لكل مرحلة عمرية.</p>
+            </div>
+
+            <!-- السؤال 4 -->
+            <button class="accordion">4. ما هي ساعات الدوام الرسمي للمدرسة؟</button>
+            <div class="panel">
+                <p>يبدأ الدوام من الساعة 8:00 صباحًا حتى الساعة 2:30 ظهرًا.</p>
+            </div>
+
+            <!-- السؤال 5 -->
+            <button class="accordion">5. هل تقدم المدرسة برامج تعليمية إضافية بعد الدوام؟</button>
+            <div class="panel">
+                <p>نعم، نوفر برامج دعم أكاديمي وأنشطة رياضية وفنية بعد الدوام الرسمي.</p>
+            </div>
+
+            <!-- السؤال 6 -->
+            <button class="accordion">6. ما هي المناهج التي تتبعها المدرسة؟</button>
+            <div class="panel">
+                <p>نعتمد مناهج وزارة التربية والتعليم الأردنية، مع تعزيز التعليم بأساليب حديثة وتكنولوجيا متقدمة.</p>
+            </div>
+
+            <!-- السؤال 7 -->
+            <button class="accordion">7. هل تتوفر وسائل نقل للطلاب؟</button>
+            <div class="panel">
+                <p>نعم، نوفر خدمة النقل المدرسي لمناطق محددة في إربد.</p>
+            </div>
+
+            <!-- السؤال 8 -->
+            <button class="accordion">8. كيف يتم تقييم الطلاب في المدرسة؟</button>
+            <div class="panel">
+                <p>يتم تقييم الطلاب من خلال اختبارات دورية، مشاريع، وأنشطة تعليمية تفاعلية، إلى جانب الامتحانات الفصلية.</p>
+            </div>
+
+            <!-- السؤال 9 -->
+            <button class="accordion">9. هل تقدم المدرسة أنشطة رياضية وفنية؟</button>
+            <div class="panel">
+                <p>نعم، نوفر العديد من الأنشطة الرياضية، الفنية، والموسيقية لتعزيز المهارات البدنية والإبداعية للطلاب.</p>
+            </div>
+
+            <!-- السؤال 10 -->
+            <button class="accordion">10. هل هناك اهتمام بالجانب النفسي والاجتماعي للطلاب؟</button>
+            <div class="panel">
+                <p>نعم، لدينا فريق متخصص يقدم الدعم النفسي والاجتماعي للطلاب لضمان رفاهيتهم الشخصية والنفسية.</p>
+            </div>
+
+            <!-- السؤال 11 -->
+            <button class="accordion">11. كيف يمكنني تسجيل ابني في المدرسة؟</button>
+            <div class="panel">
+                <p>يمكنك التواصل مع الإدارة عبر الهاتف أو زيارة المدرسة شخصيًا لتعبئة استمارة التسجيل وتقديم الأوراق المطلوبة.</p>
+            </div>
+
+            <!-- السؤال 12 -->
+            <button class="accordion">12. هل يتم قبول الطلاب من خارج إربد؟</button>
+            <div class="panel">
+                <p>نعم، يمكن للطلاب من خارج إربد التقدم للتسجيل، مع مراعاة توفر خدمة النقل.</p>
+            </div>
+
+            <!-- السؤال 13 -->
+            <button class="accordion">13. ما هي الرسوم الدراسية للعام الحالي؟</button>
+            <div class="panel">
+                <p>للحصول على تفاصيل الرسوم الدراسية، يرجى التواصل مع الإدارة عبر الهاتف أو البريد الإلكتروني.</p>
+            </div>
+
+            <!-- السؤال 14 -->
+            <button class="accordion">14. هل تقدم المدرسة خصومات للعائلات؟</button>
+            <div class="panel">
+                <p>نعم، نوفر خصومات خاصة للعائلات التي لديها أكثر من طفل مسجل في المدرسة.</p>
+            </div>
+
+            <!-- السؤال 15 -->
+            <button class="accordion">15. هل توفر المدرسة وجبات غذائية للطلاب؟</button>
+            <div class="panel">
+                <p>نعم، نقدم وجبات صحية ومتوازنة للطلاب خلال اليوم الدراسي.</p>
+            </div>
+
+            <!-- السؤال 16 -->
+            <button class="accordion">16. كيف يتم التواصل مع أولياء الأمور؟</button>
+            <div class="panel">
+                <p>نتواصل مع أولياء الأمور بانتظام من خلال الاجتماعات، الرسائل النصية، والموقع الإلكتروني لتقديم تقارير تقدم الطلاب.</p>
+            </div>
+
+            <!-- السؤال 17 -->
+            <button class="accordion">17. هل يوجد نظام متابعة للغياب؟</button>
+            <div class="panel">
+                <p>نعم، يتم متابعة غياب الطلاب بشكل يومي، ويتم التواصل مع أولياء الأمور في حال وجود غيابات متكررة.</p>
+            </div>
+
+            <!-- السؤال 18 -->
+            <button class="accordion">18. ما هي المرافق المتاحة في المدرسة؟</button>
+            <div class="panel">
+                <p>توفر المدرسة مرافق حديثة تشمل المكتبة، المختبرات العلمية، الملاعب الرياضية، وقاعات فنية وموسيقية.</p>
+            </div>
+
+            <!-- السؤال 19 -->
+            <button class="accordion">19. هل هناك برنامج لدعم الطلاب ذوي الاحتياجات الخاصة؟</button>
+            <div class="panel">
+                <p>نعم، نوفر برامج دعم فردي وخدمات مساندة للطلاب ذوي الاحتياجات الخاصة.</p>
+            </div>
+
+            <!-- السؤال 20 -->
+            <button class="accordion">20. كيف يمكنني متابعة أخبار المدرسة والأنشطة؟</button>
+            <div class="panel">
+                <p>يمكنك متابعة أخبار المدرسة من خلال الموقع الإلكتروني، صفحاتنا على وسائل التواصل الاجتماعي، أو عبر الرسائل الإخبارية.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- ربط ملفات الجافا سكربت إذا لزم الأمر -->
+    <script src="student_home_works.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>

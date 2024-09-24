@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword Extractor Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        textarea, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        textarea:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button i {
+            margin-right: 5px;
+        }
+
+        .count-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+        }
+
+        #keywordList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #keywordList li {
+            background-color: #e0e0e0;
+            margin: 5px 0;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Keyword Extractor Pro</h1>
+        
+        <div class="section">
+            <h2>1. Settings</h2>
+            <label for="keywordCount">Number of keywords to extract:</label>
+            <input type="number" id="keywordCount" min="1" max="50" value="10">
+        </div>
+        
+        <div class="section">
+            <h2>2. Input</h2>
+            <textarea id="inputText" placeholder="Enter your text here..." oninput="updateInputCount()"></textarea>
+            <div class="count-labels">
+                <span id="inputWordCount">Words: 0</span>
+                <span id="inputCharCount">Characters: 0</span>
+            </div>
+            <div class="button-group">
+                <button onclick="extractKeywords()"><i class="fas fa-key"></i> Extract Keywords</button>
+                <button onclick="clearInput()"><i class="fas fa-trash-alt"></i> Clear Input</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>3. Output</h2>
+            <ul id="keywordList"></ul>
+            <div class="button-group">
+                <button onclick="copyToClipboard()"><i class="fas fa-copy"></i> Copy Keywords</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function extractKeywords() {
+            const text = document.getElementById('inputText').value.toLowerCase();
+            const keywordCount = parseInt(document.getElementById('keywordCount').value);
+            
+            // Remove common words and punctuation
+            const commonWords = new Set(['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by']);
+            const words = text.match(/\b\w+\b/g).filter(word => !commonWords.has(word));
+            
+            // Count word frequency
+            const wordFrequency = {};
+            for (const word of words) {
+                wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+            }
+            
+            // Sort words by frequency
+            const sortedWords = Object.entries(wordFrequency)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, keywordCount)
+                .map(entry => entry[0]);
+            
+            // Display keywords
+            const keywordList = document.getElementById('keywordList');
+            keywordList.innerHTML = '';
+            for (const keyword of sortedWords) {
+                const li = document.createElement('li');
+                li.textContent = keyword;
+                keywordList.appendChild(li);
+            }
+        }
+
+        function clearInput() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('keywordList').innerHTML = '';
+            updateInputCount();
+        }
+
+        function copyToClipboard() {
+            const keywords = Array.from(document.getElementById('keywordList').children)
+                .map(li => li.textContent)
+                .join(', ');
+            navigator.clipboard.writeText(keywords).then(() => {
+                alert('Keywords copied to clipboard!');
+            });
+        }
+
+        function updateInputCount() {
+            const text = document.getElementById('inputText').value;
+            const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const charCount = text.length;
+            
+            document.getElementById('inputWordCount').textContent = `Words: ${wordCount}`;
+            document.getElementById('inputCharCount').textContent = `Characters: ${charCount}`;
+        }
+
+        // Initialize counts
+        updateInputCount();
+    </script>
+</body>
+</html>

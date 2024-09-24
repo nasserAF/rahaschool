@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt & Decrypt Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        textarea, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        input[type="text"], input[type="number"] {
+            margin-bottom: 10px;
+        }
+
+        textarea:focus, input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button i {
+            margin-right: 5px;
+        }
+
+        .count-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+        }
+
+        .encryption-type {
+            margin-bottom: 15px;
+        }
+
+        #encryptDecryptToggle {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encrypt & Decrypt Pro</h1>
+        
+        <div id="encryptDecryptToggle">
+            <label><input type="radio" name="mode" value="encrypt" checked> Encrypt</label>
+            <label><input type="radio" name="mode" value="decrypt"> Decrypt</label>
+        </div>
+        
+        <div class="section">
+            <h2>1. Encryption Settings</h2>
+            <div class="encryption-type">
+                <input type="radio" id="caesarCipher" name="encryptionType" value="caesar" checked>
+                <label for="caesarCipher">Caesar Cipher</label>
+                <input type="number" id="caesarShift" min="1" max="25" value="3" placeholder="Shift (1-25)">
+            </div>
+            <div class="encryption-type">
+                <input type="radio" id="vigenere" name="encryptionType" value="vigenere">
+                <label for="vigenere">Vigenère Cipher</label>
+                <input type="text" id="vigenereKey" placeholder="Encryption Key">
+            </div>
+            <div class="encryption-type">
+                <input type="radio" id="base64" name="encryptionType" value="base64">
+                <label for="base64">Base64 Encoding</label>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>2. Input</h2>
+            <textarea id="inputText" placeholder="Enter your text here..." oninput="updateInputCount()"></textarea>
+            <div class="count-labels">
+                <span id="inputCharCount">Characters: 0</span>
+            </div>
+            <div class="button-group">
+                <button onclick="processText()"><i class="fas fa-key"></i> <span id="processButtonText">Encrypt</span></button>
+                <button onclick="clearInput()"><i class="fas fa-trash-alt"></i> Clear Input</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>3. Output</h2>
+            <textarea id="outputText" readonly placeholder="Processed text will appear here..."></textarea>
+            <div class="count-labels">
+                <span id="outputCharCount">Characters: 0</span>
+            </div>
+            <div class="button-group">
+                <button onclick="clearOutput()"><i class="fas fa-trash-alt"></i> Clear Output</button>
+                <button onclick="copyToClipboard()"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function processText() {
+            const inputText = document.getElementById('inputText').value;
+            const encryptMode = document.querySelector('input[name="mode"]:checked').value === 'encrypt';
+            const encryptionType = document.querySelector('input[name="encryptionType"]:checked').value;
+            let outputText = '';
+
+            switch(encryptionType) {
+                case 'caesar':
+                    const shift = parseInt(document.getElementById('caesarShift').value);
+                    outputText = caesarCipher(inputText, shift, encryptMode);
+                    break;
+                case 'vigenere':
+                    const key = document.getElementById('vigenereKey').value;
+                    outputText = vigenereCipher(inputText, key, encryptMode);
+                    break;
+                case 'base64':
+                    outputText = base64Process(inputText, encryptMode);
+                    break;
+            }
+
+            document.getElementById('outputText').value = outputText;
+            updateOutputCount();
+        }
+
+        function caesarCipher(text, shift, encrypt) {
+            return text.split('').map(char => {
+                if (char.match(/[a-z]/i)) {
+                    const code = char.charCodeAt(0);
+                    let shiftAmount = encrypt ? shift : -shift;
+                    if (code >= 65 && code <= 90) {
+                        return String.fromCharCode(((code - 65 + shiftAmount + 26) % 26) + 65);
+                    } else if (code >= 97 && code <= 122) {
+                        return String.fromCharCode(((code - 97 + shiftAmount + 26) % 26) + 97);
+                    }
+                }
+                return char;
+            }).join('');
+        }
+
+        function vigenereCipher(text, key, encrypt) {
+            let result = '';
+            let keyIndex = 0;
+            
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (char.match(/[a-z]/i)) {
+                    const isUpperCase = char === char.toUpperCase();
+                    const plainChar = char.toLowerCase();
+                    const keyChar = key[keyIndex % key.length].toLowerCase();
+                    const plainCode = plainChar.charCodeAt(0) - 97;
+                    const keyCode = keyChar.charCodeAt(0) - 97;
+                    let resultCode;
+                    
+                    if (encrypt) {
+                        resultCode = (plainCode + keyCode) % 26;
+                    } else {
+                        resultCode = (plainCode - keyCode + 26) % 26;
+                    }
+                    
+                    const resultChar = String.fromCharCode(resultCode + 97);
+                    result += isUpperCase ? resultChar.toUpperCase() : resultChar;
+                    keyIndex++;
+                } else {
+                    result += char;
+                }
+            }
+            
+            return result;
+        }
+
+        function base64Process(text, encrypt) {
+            if (encrypt) {
+                return btoa(text);
+            } else {
+                try {
+                    return atob(text);
+                } catch (e) {
+                    return "Error: Invalid Base64 input";
+                }
+            }
+        }
+
+        function clearInput() {
+            document.getElementById('inputText').value = '';
+            updateInputCount();
+        }
+
+        function clearOutput() {
+            document.getElementById('outputText').value = '';
+            updateOutputCount();
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputText');
+            outputText.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+
+        function updateInputCount() {
+            const text = document.getElementById('inputText').value;
+            document.getElementById('inputCharCount').textContent = `Characters: ${text.length}`;
+        }
+
+        function updateOutputCount() {
+            const text = document.getElementById('outputText').value;
+            document.getElementById('outputCharCount').textContent = `Characters: ${text.length}`;
+        }
+
+        // Update button text based on selected mode
+        document.querySelectorAll('input[name="mode"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('processButtonText').textContent = this.value === 'encrypt' ? 'Encrypt' : 'Decrypt';
+            });
+        });
+
+        // Initialize counts
+        updateInputCount();
+        updateOutputCount();
+    </script>
+</body>
+</html>

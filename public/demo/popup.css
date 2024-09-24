@@ -1,0 +1,45 @@
+/* popup.css */
+
+/* Popup Container */
+.popup {
+    display: none; /* مخفية بشكل افتراضي */
+    position: fixed; /* ثابتة في المكان */
+    z-index: 1000; /* تظهر فوق كل العناصر الأخرى */
+    left: 0;
+    top: 0;
+    width: 100%; /* العرض الكامل */
+    height: 100%; /* الارتفاع الكامل */
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية شفافة */
+    /* إزالة display: flex; هنا */
+}
+
+/* Popup Content */
+.popup-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: left;
+    margin: auto; /* لمركزية العنصر */
+}
+
+/* Close Button */
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}

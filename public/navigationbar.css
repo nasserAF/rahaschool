@@ -1,0 +1,121 @@
+/* navigationbar.css */
+
+/* Navigation Bar Container */
+.navbar {
+    background-color: #2c3e50;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar .logo {
+    color: #ecf0f1;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    color: #ecf0f1;
+    color: #1a4854;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+
+.dropbtn{
+    color: white;
+}
+
+
+
+
+/* Responsive Design */
+/* @media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+    }
+
+    .navbar .nav-links.active {
+        display: flex;
+    }
+
+    .navbar .mobile-menu {
+        display: flex;
+    }
+} */
+
+/* General styles for navbar */
+
+
+
+
+
+
+.nav-links a {
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    color: #fff; /* Keep the main menu text white */
+}
+
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff; /* Keep submenu background white */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+
+
+
+
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Mobile menu styles */
+#mobile-menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    #mobile-menu {
+        display: block;
+    }
+}
+

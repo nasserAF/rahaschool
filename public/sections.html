@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة الشُعب الدراسية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="popup.css"> <!-- إذا كان هناك نوافذ Popup -->
+    <script src="jquery-3.2.1.js"></script>
+    <script src="script_sections.js" defer></script> <!-- سكريبت خاص بالصفحة -->
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- نموذج إدارة الشُعب -->
+    <div class="container">
+        <h1>إدارة الشُعب الدراسية</h1>
+
+        <!-- اختيار الصف الدراسي -->
+        <div class="form-group">
+            <label for="gradeSelect">اختر الصف الدراسي:</label>
+            <select id="gradeSelect" required>
+                <option value="">-- اختر الصف --</option>
+                <!-- سيتم تعبئة الخيارات بواسطة script_sections.js -->
+            </select>
+        </div>
+
+        <!-- عرض الشُعب الحالية -->
+        <div id="sectionsContainer">
+            <!-- سيتم عرض الشُعب هنا -->
+        </div>
+
+        <div class="form-group">
+            <button type="button" id="addSectionBtn" style="width: 100%;">إضافة شعبة</button>
+        </div>
+
+        <!-- إضافة حاوية لإدخال بيانات الصف الدراسي الجديد -->
+        <div class="form-group" id="newGradeFields" style="display: none;">
+            <h3>إضافة صف دراسي جديد</h3>
+            <div id="periodsContainer">
+                <h4>عدد الحصص اليومية:</h4>
+                <!-- سيتم إنشاء حقول الحصص ديناميكيًا بواسطة JavaScript -->
+            </div>
+        </div>
+        
+        <div id="periodsContainer" class="form-group">
+            <h4>عدد الحصص اليومية:</h4>
+            <div class="form-group">
+                <label for="period_Sunday">الأحد:</label>
+                <input type="number" id="period_Sunday" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="period_Monday">الإثنين:</label>
+                <input type="number" id="period_Monday" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="period_Tuesday">الثلاثاء:</label>
+                <input type="number" id="period_Tuesday" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="period_Wednesday">الأربعاء:</label>
+                <input type="number" id="period_Wednesday" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="period_Thursday">الخميس:</label>
+                <input type="number" id="period_Thursday" min="0" max="10" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="button" id="saveDailyPeriodsBtn">حفظ الحصص اليومية</button>
+        </div>
+
+    </div>
+
+    <!-- إزالة تضمين ملف التنقل الخاطئ -->
+    <!-- <script src="navigationbar.js"></script> -->
+</body>
+
+</html>

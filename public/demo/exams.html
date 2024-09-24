@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاختبارات - ريان ناصر أبو فاره</title>
+    <!-- ربط ملفات CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>الاختبارات</h1>
+        <p>رقم الطالب: <strong>123456</strong></p>
+        <p>اسم الطالب: <strong>ريان ناصر أبو فاره</strong></p>
+        <p>الصف - الشعبة: <strong>التاسع - ب</strong></p>
+        <p>إسم مربية الصف: <strong>الاء الربيع</strong></p>
+
+        <!-- قسم مواعيد الاختبارات القادمة -->
+        <section>
+            <h2>مواعيد الاختبارات القادمة</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th>موعد الاختبار</th>
+                        <th>مادة الاختبار</th>
+                        <th>من صحفة إلى صحفة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الرياضيات</td>
+                        <td>10 أكتوبر 2024</td>
+                        <td>حل مسائل الصفحات 30-35</td>
+                        <td>من الصفحة 30 إلى الصفحة 35</td>
+                    </tr>
+                    <tr>
+                        <td>اللغة العربية</td>
+                        <td>12 أكتوبر 2024</td>
+                        <td>قراءة الفصل الثالث</td>
+                        <td>من الصفحة 50 إلى الصفحة 60</td>
+                    </tr>
+                    <tr>
+                        <td>العلوم</td>
+                        <td>15 أكتوبر 2024</td>
+                        <td>مشروع عن النباتات</td>
+                        <td>من الصفحة 70 إلى الصفحة 80</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- قسم الاختبارات السابقة -->
+        <section>
+            <h2>الاختبارات السابقة</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th>تفاصيل الاختبار</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- مادة الرياضيات -->
+                    <tr>
+                        <td rowspan="2">الرياضيات</td>
+                        <td>
+                            <p><strong>تاريخ الاختبار:</strong> 05 سبتمبر 2024</p>
+                            <p><strong>العلامة:</strong> 85</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>تاريخ الاختبار:</strong> 15 أغسطس 2024</p>
+                            <p><strong>العلامة:</strong> 78</p>
+                        </td>
+                    </tr>
+
+                    <!-- مادة اللغة العربية -->
+                    <tr>
+                        <td rowspan="3">اللغة العربية</td>
+                        <td>
+                            <p><strong>تاريخ الاختبار:</strong> 07 سبتمبر 2024</p>
+                            <p><strong>العلامة:</strong> 90</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>تاريخ الاختبار:</strong> 20 أغسطس 2024</p>
+                            <p><strong>العلامة:</strong> 88</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>تاريخ الاختبار:</strong> 05 أغسطس 2024</p>
+                            <p><strong>العلامة:</strong> 82</p>
+                        </td>
+                    </tr>
+
+                    <!-- مادة العلوم -->
+                    <tr>
+                        <td rowspan="1">العلوم</td>
+                        <td>
+                            <p><strong>تاريخ الاختبار:</strong> 10 سبتمبر 2024</p>
+                            <p><strong>العلامة:</strong> 75</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- ربط ملفات الجافا سكربت إذا لزم الأمر -->
+    <script src="student_home_works.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>

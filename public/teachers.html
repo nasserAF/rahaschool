@@ -1,0 +1,82 @@
+<!-- teachers.html -->
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة المعلمات</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <script src="script_teachers.js" defer></script>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- محتوى الصفحة -->
+    <div class="container">
+        <h1>إدارة المعلمات</h1>
+
+        <!-- عرض قائمة المعلمات -->
+        <h2>قائمة المعلمات</h2>
+        <input type="text" id="searchInput" placeholder="ابحث عن معلمة بالاسم أو الرقم..." class="search-input">
+        <table id="teachersTable" class="table">
+            <thead>
+                <tr>
+                    <th>رقم المعلمة</th>
+                    <th>اسم المعلمة</th>
+                    <th>المواد</th>
+                    <th>الصفوف</th> <!-- إضافة عمود الصفوف -->
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- سيتم تعبئة البيانات هنا بواسطة JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- نموذج إضافة/تعديل معلمة -->
+        <h2 id="formTitle">إضافة معلمة جديدة</h2>
+        <form id="teacherForm" class="form">
+            <div class="form-group">
+                <label for="teacherId">رقم المعلمة:</label>
+                <input type="text" id="teacherId" required>
+            </div>
+            <div class="form-group">
+                <label for="teacherName">اسم المعلمة:</label>
+                <input type="text" id="teacherName" required>
+            </div>
+            <div class="form-group">
+                <label for="gradeSelect">اختر الصف:</label>
+                <select id="gradeSelect" required>
+                    <option value="">-- اختر الصف --</option>
+                    <!-- سيتم تعبئة الخيارات بواسطة JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subjectSelect">اختر المادة:</label>
+                <select id="subjectSelect">
+                    <option value="">-- اختر المادة --</option>
+                    <!-- سيتم تعبئة الخيارات بعد اختيار الصف -->
+                </select>
+                <button type="button" id="addSubjectBtn" class="btn btn-primary">إضافة المادة</button>
+            </div>
+            <div class="form-group">
+                <label>المواد المختارة:</label>
+                <div id="selectedSubjects">
+                    <!-- سيتم عرض المواد المختارة هنا -->
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="saveBtn" class="btn btn-primary">حفظ</button>
+                <button type="button" id="cancelBtn" class="btn btn-secondary">إلغاء</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- تضمين ملفات JavaScript -->
+        <!-- <script src="script_teachers.js"></script>
+    <script src="script.js"></script> -->
+    
+</body>
+</html>

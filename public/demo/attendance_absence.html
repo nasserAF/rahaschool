@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتبع الحضور والغياب - ريان ناصر أبو فاره</title>
+    <!-- ربط ملفات CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div id="navbar-placeholder"></div>
+    
+    <div class="container">
+        <h1>تتبع الحضور والغياب</h1>
+        <p>رقم الطالب: <strong>123456</strong></p>
+        <p>اسم الطالب: <strong>ريان ناصر أبو فاره</strong></p>
+        <p>الصف - الشعبة: <strong>التاسع - ب</strong></p>
+        <p>إسم مربية الصف: <strong>الاء الربيع</strong></p>
+
+        <!-- مجموع الغيابات -->
+        <section>
+            <h2>مجموع الغيابات</h2>
+            <p><strong>عدد الغيابات:</strong> 5 / 15</p>
+        </section>
+
+        <!-- جدول تفاصيل الغيابات -->
+        <section>
+            <h2>تفاصيل الغيابات</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>التاريخ</th>
+                        <th>سبب الغياب</th>
+                        <th>العذر</th>
+                        <th>حالة العذر</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>02 سبتمبر 2024</td>
+                        <td>مرض</td>
+                        <td>تم تقديم شهادة طبية</td>
+                        <td style="color: green;"><strong>مقبول</strong></td>
+                    </tr>
+                    <tr>
+                        <td>10 أغسطس 2024</td>
+                        <td>إجازة عائلية</td>
+                        <td>تم إخطار المدرسة مسبقًا</td>
+                        <td style="color: green;"><strong>مقبول</strong></td>
+                    </tr>
+                    <tr>
+                        <td>18 يوليو 2024</td>
+                        <td>مرض</td>
+                        <td>لم يتم تقديم عذر</td>
+                        <td style="color: red;"><strong>غير مقبول</strong></td>
+                    </tr>
+                    <tr>
+                        <td>05 يوليو 2024</td>
+                        <td>حوادث</td>
+                        <td>تم تقديم تقرير الشرطة</td>
+                        <td style="color: green;"><strong>مقبول</strong></td>
+                    </tr>
+                    <tr>
+                        <td>20 يونيو 2024</td>
+                        <td>مرض</td>
+                        <td>تم تقديم شهادة طبية</td>
+                        <td style="color: green;"><strong>مقبول</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- ربط ملفات الجافا سكربت إذا لزم الأمر -->
+    <script src="student_home_works.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>

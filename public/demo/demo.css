@@ -1,0 +1,266 @@
+/* demo.css */
+
+/* Reset some basic elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* تعريف الخط المخصص */
+@font-face {
+  font-family: 'Jazeera Light';
+  src: url('fonts/jazeera-light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Jazeera Light', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  direction: rtl; /* Ensure right-to-left layout for Arabic */
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border: 1px solid #17a2b8;
+  color: #fff;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  border: 1px solid #ecf0f1;
+  text-align: center;
+}
+
+.table th {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+#selectedSubjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.selected-subject {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f0f0f0; /* خلفية خفيفة */
+  border: 1px solid #ccc; /* حد خفيف */
+  border-radius: 20px; /* حواف دائرية */
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.selected-subject:hover {
+  background-color: #e0e0e0; /* خلفية أغمق عند التمرير */
+  border-color: #999; /* حد أغمق عند التمرير */
+}
+
+.remove-subject {
+  margin-left: 8px;
+  background: none;
+  border: none;
+  color: #888;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+.remove-subject:hover {
+  color: #ff0000; /* تغيير اللون إلى الأحمر عند التمرير */
+}
+
+.selected-subject span {
+  margin-right: 10px;
+}
+
+.selected-subject button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.selected-subject button:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+      padding: 20px;
+  }
+
+  .table th,
+  .table td {
+      padding: 8px 10px;
+  }
+
+  button {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+
+  .form-group {
+      flex-direction: column;
+  }
+
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .navbar .nav-links {
+      flex-direction: column;
+      width: 100%;
+      display: none;
+  }
+
+  .navbar .nav-links.active {
+      display: flex;
+  }
+
+  .navbar .mobile-menu {
+      display: flex;
+  }
+}
+
+#saveDailyPeriodsBtn, #addSectionBtn {
+  background-color: #007bff; /* الأزرق */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#saveDailyPeriodsBtn:hover, #addSectionBtn:hover {
+  background-color: #0056b3; /* أزرق أغمق عند التمرير */
+}
+
+/* تم إزالة تعريفات popup-related styles من هنا لتجنب التعارض */

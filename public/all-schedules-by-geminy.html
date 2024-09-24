@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Schedule</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #schedule-tables {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right; /* Align text to the right */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd; /* Thin gray border */
+            padding: 12px;
+            text-transform: capitalize; /* Capitalize first letter */
+        }
+
+        th {
+            background-color: #007bff; /* Blue background for header */
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) { /* Alternate row colors */
+            background-color: #f8f8f8;
+        }
+
+        tr:nth-child(odd) { 
+            background-color: #fff;
+        }
+
+        tr:nth-child(1) { /* Header row */
+            background-color: #007bff; /* Blue background for header */
+            color: white;
+            font-weight: bold;
+            text-align: center; 
+        }
+
+        h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>School Schedule</h1>
+    </header>
+
+    <main>
+        <div id="schedule-tables">
+            <!-- Tables will be loaded here -->
+        </div>
+    </main>
+
+    <script>
+        fetch('all_schedules.json')
+            .then(response => response.json())
+            .then(data => {
+                const scheduleTables = document.getElementById('schedule-tables');
+
+                for (const sectionId in data) {
+                    const section = data[sectionId];
+                    const gradeName = section.grade_name;
+                    const sectionName = section.section_name;
+                    const schedule = section.schedule;
+
+                    const table = document.createElement('table');
+                    const headerRow = table.insertRow();
+
+                    const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+                    const maxPeriods = Math.max(...Object.values(schedule).map(daySchedule => daySchedule.length));
+                    const headerCells = ['اليوم'];
+
+                    for (let i = 1; i <= maxPeriods; i++) {
+                        headerCells.push(`الحصة ${i}`);
+                    }
+
+                    headerCells.splice(4, 0, 'استراحة');
+
+                    for (let i = 0; i < headerCells.length; i++) {
+                        const headerCell = headerRow.insertCell();
+                        headerCell.textContent = headerCells[i];
+                    }
+
+                    for (const day in schedule) {
+                        const row = table.insertRow();
+                        const dayCell = row.insertCell();
+                        dayCell.textContent = day;
+
+                        for (let i = 0; i < schedule[day].length; i++) {
+                            const subjectCell = row.insertCell();
+                            subjectCell.textContent = schedule[day][i];
+                        }
+
+                        for (let i = schedule[day].length; i < maxPeriods + 1; i++) {
+                            const emptyCell = row.insertCell();
+                            emptyCell.textContent = "---";
+                        }
+                    }
+
+                    const tableTitle = document.createElement('h3');
+                    tableTitle.textContent = `${gradeName} - ${sectionName}`;
+
+                    scheduleTables.appendChild(tableTitle);
+                    scheduleTables.appendChild(table);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching JSON data:', error);
+            });
+    </script>
+
+</body>
+</html>

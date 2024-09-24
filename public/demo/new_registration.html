@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل طالب جديد</title>
+    <!-- ربط ملفات CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="demo.css">
+    <!-- إضافة بعض الجافاسكريبت لتحسين التفاعل -->
+     <style>
+        /* نمط لعرض العناصر بشكل أفقي */
+.inline-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.inline-group label {
+    margin-right: 10px;
+}
+
+.inline-group input[type="text"],
+.inline-group input[type="number"],
+.inline-group select {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* نمط خاص لعرض الـ Checkboxes في صفوف من 4 */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    width: calc(25% - 10px); /* أربع عناصر في السطر */
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-left: 5px;
+}
+     </style>
+    <script>
+        // وظيفة لتمكين أو تعطيل حقل اسم الروضة بناءً على إجابة السؤال
+        function toggleKindergartenField() {
+            const kindergartenYes = document.getElementById('kindergarten-yes');
+            const kindergartenField = document.getElementById('previous-kindergarten');
+            if (kindergartenYes.checked) {
+                kindergartenField.disabled = false;
+            } else {
+                kindergartenField.disabled = true;
+                kindergartenField.value = '';
+            }
+        }
+
+        // وظيفة لتمكين أو تعطيل حقل الحساسية بناءً على إجابة السؤال
+        function toggleAllergyField() {
+            const allergyYes = document.getElementById('allergy-yes');
+            const allergyField = document.getElementById('allergy-details');
+            if (allergyYes.checked) {
+                allergyField.disabled = false;
+            } else {
+                allergyField.disabled = true;
+                allergyField.value = '';
+            }
+        }
+
+        // وظيفة لتمكين أو تعطيل حقل الأدوية بناءً على إجابة السؤال
+        function toggleMedicationField() {
+            const medicationYes = document.getElementById('medication-yes');
+            const medicationField = document.getElementById('medication-details');
+            if (medicationYes.checked) {
+                medicationField.disabled = false;
+            } else {
+                medicationField.disabled = true;
+                medicationField.value = '';
+            }
+        }
+
+        // وظيفة لتصفية قائمة الجنسيات
+        function filterNationality(inputId, selectId) {
+            const input = document.getElementById(inputId).value.toLowerCase();
+            const select = document.getElementById(selectId);
+            const options = select.getElementsByTagName('option');
+
+            for (let i = 0; i < options.length; i++) {
+                const txtValue = options[i].textContent || options[i].innerText;
+                if (txtValue.toLowerCase().indexOf(input) > -1) {
+                    options[i].style.display = "";
+                } else {
+                    options[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>تسجيل طالب جديد</h1>
+
+        <!-- معلومات الطالب -->
+        <section>
+            <h2>معلومات الطالب</h2>
+            <form>
+                <!-- الاسم الأول، اسم الأب، اسم الجد، اسم العائلة -->
+                <div class="form-group inline-group">
+                    <input type="text" name="first-name" placeholder="الاسم الأول" required>
+                    <input type="text" name="father-name" placeholder="اسم الأب" required>
+                    <input type="text" name="grandfather-name" placeholder="اسم الجد" required>
+                    <input type="text" name="last-name" placeholder="اسم العائلة" required>
+                </div>
+
+                <!-- تاريخ الميلاد -->
+                <div class="form-group">
+                    <label>تاريخ الميلاد:</label>
+                    <input type="date" name="birth-date" required>
+                </div>
+
+                <!-- الجنس والعمر -->
+                <div class="form-group inline-group">
+                    <label>الجنس:</label>
+                    <label><input type="radio" name="gender" value="ذكر" required> ذكر</label>
+                    <label><input type="radio" name="gender" value="أنثى" required> أنثى</label>
+
+                    <label>العمر:</label>
+                    <input type="number" name="age" min="5" max="20" required>
+                    
+                </div>
+
+                <!-- مكان الولادة -->
+                <div class="form-group">
+                    <label>مكان الولادة:</label>
+                    <input type="text" name="birth-place" required>
+                </div>
+
+                <!-- الجنسية -->
+                <div class="form-group">
+                    <label>الجنسية:</label>
+                    <input type="text" id="nationality-search-student" onkeyup="filterNationality('nationality-search-student', 'nationality-student')" placeholder="ابحث عن جنسية...">
+                    <select id="nationality-student" name="nationality" required>
+                        <option value="">اختر الجنسية</option>
+                        <!-- قائمة الجنسيات باللغة العربية -->
+                        <option>السعودية</option>
+                        <option>الإماراتية</option>
+                        <option>الكويتية</option>
+                        <option>البحرينية</option>
+                        <option>القطرية</option>
+                        <option>العراقية</option>
+                        <option>الجزائرية</option>
+                        <option>المصرية</option>
+                        <option>المغربية</option>
+                        <option>التونسية</option>
+                        <option>ليبية</option>
+                        <option>سورية</option>
+                        <option>لبنانية</option>
+                        <option>الأردنية</option>
+                        <option>فلسطينية</option>
+                        <option>أمريكية</option>
+                        <option>بريطانية</option>
+                        <option>فرنسية</option>
+                        <option>ألمانية</option>
+                        <option>إيطالية</option>
+                        <!-- أضف المزيد من الجنسيات حسب الحاجة -->
+                    </select>
+                </div>
+
+                <!-- الرقم الوطني -->
+                <div class="form-group">
+                    <label>الرقم الوطني:</label>
+                    <input type="text" name="national-id" required>
+                </div>
+
+                <!-- الديانة -->
+                <div class="form-group">
+                    <label>الديانة:</label>
+                    <select name="religion" required>
+                        <option value="">اختر الديانة</option>
+                        <option>مسلم</option>
+                        <option>مسيحي</option>
+                        <option>غير ذلك</option>
+                    </select>
+                </div>
+
+                <hr>
+
+                <!-- بيانات الاتصال -->
+                <h2>بيانات الاتصال</h2>
+                <div class="form-group">
+                    <label>رقم هاتف الأب:</label>
+                    <input type="text" name="father-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم هاتف الأم:</label>
+                    <input type="text" name="mother-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم هاتف الحالات الطارئة:</label>
+                    <input type="text" name="emergency-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>اسم الشخص الذي يستلم الطفل يوميًا:</label>
+                    <input type="text" name="daily-receiver" required>
+                </div>
+                <div class="form-group">
+                    <label>من ينوب عن مستلم الطفل:</label>
+                    <input type="text" name="proxy-receiver" required>
+                </div>
+
+                <hr>
+
+                <!-- بيانات الطفل الأكاديمية -->
+                <h2>بيانات الطفل الأكاديمية</h2>
+                <div class="form-group inline-group">
+                    <label>سبق للطفل أن دخل الروضة؟</label>
+                    <label><input type="radio" name="kindergarten" value="نعم" id="kindergarten-yes" onclick="toggleKindergartenField()" required> نعم</label>
+                    <label><input type="radio" name="kindergarten" value="لا" onclick="toggleKindergartenField()" required> لا</label>
+                </div>
+                <div class="form-group">
+                    <label>اسم الروضة أو الحضانة السابقة:</label>
+                    <input type="text" name="previous-kindergarten" id="previous-kindergarten" disabled>
+                </div>
+
+                <hr>
+
+                <!-- معلومات الأب -->
+                <h2>معلومات الأب</h2>
+                <div class="form-group">
+                    <label>اسم الأب بالكامل:</label>
+                    <input type="text" name="father-fullname" required>
+                </div>
+                <div class="form-group">
+                    <label>الجنسية:</label>
+                    <input type="text" id="nationality-search-father" onkeyup="filterNationality('nationality-search-father', 'nationality-father')" placeholder="ابحث عن جنسية...">
+                    <select id="nationality-father" name="father-nationality" required>
+                        <option value="">اختر الجنسية</option>
+                        <!-- قائمة الجنسيات باللغة العربية -->
+                        <option>السعودية</option>
+                        <option>الإماراتية</option>
+                        <option>الكويتية</option>
+                        <option>البحرينية</option>
+                        <option>القطرية</option>
+                        <option>العراقية</option>
+                        <option>الجزائرية</option>
+                        <option>المصرية</option>
+                        <option>المغربية</option>
+                        <option>التونسية</option>
+                        <option>ليبية</option>
+                        <option>سورية</option>
+                        <option>لبنانية</option>
+                        <option>الأردنية</option>
+                        <option>فلسطينية</option>
+                        <option>أمريكية</option>
+                        <option>بريطانية</option>
+                        <option>فرنسية</option>
+                        <option>ألمانية</option>
+                        <option>إيطالية</option>
+                        <!-- أضف المزيد من الجنسيات حسب الحاجة -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الرقم الوطني:</label>
+                    <input type="text" name="father-national-id" required>
+                </div>
+                <div class="form-group">
+                    <label>المهنة:</label>
+                    <input type="text" name="father-occupation" required>
+                </div>
+                <div class="form-group">
+                    <label>مكان العمل:</label>
+                    <input type="text" name="father-workplace" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم هاتف العمل:</label>
+                    <input type="text" name="father-work-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف النقال:</label>
+                    <input type="text" name="father-mobile" required>
+                </div>
+                <div class="form-group">
+                    <label>عنوان البريد الإلكتروني:</label>
+                    <input type="email" name="father-email" required>
+                </div>
+
+                <hr>
+
+                <!-- معلومات الأم -->
+                <h2>معلومات الأم</h2>
+                <div class="form-group">
+                    <label>اسم الأم بالكامل:</label>
+                    <input type="text" name="mother-fullname" required>
+                </div>
+                <div class="form-group">
+                    <label>الجنسية:</label>
+                    <input type="text" id="nationality-search-mother" onkeyup="filterNationality('nationality-search-mother', 'nationality-mother')" placeholder="ابحث عن جنسية...">
+                    <select id="nationality-mother" name="mother-nationality" required>
+                        <option value="">اختر الجنسية</option>
+                        <!-- قائمة الجنسيات باللغة العربية -->
+                        <option>السعودية</option>
+                        <option>الإماراتية</option>
+                        <option>الكويتية</option>
+                        <option>البحرينية</option>
+                        <option>القطرية</option>
+                        <option>العراقية</option>
+                        <option>الجزائرية</option>
+                        <option>المصرية</option>
+                        <option>المغربية</option>
+                        <option>التونسية</option>
+                        <option>ليبية</option>
+                        <option>سورية</option>
+                        <option>لبنانية</option>
+                        <option>الأردنية</option>
+                        <option>فلسطينية</option>
+                        <option>أمريكية</option>
+                        <option>بريطانية</option>
+                        <option>فرنسية</option>
+                        <option>ألمانية</option>
+                        <option>إيطالية</option>
+                        <!-- أضف المزيد من الجنسيات حسب الحاجة -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الرقم الوطني:</label>
+                    <input type="text" name="mother-national-id" required>
+                </div>
+                <div class="form-group">
+                    <label>المهنة:</label>
+                    <input type="text" name="mother-occupation" required>
+                </div>
+                <div class="form-group">
+                    <label>مكان العمل:</label>
+                    <input type="text" name="mother-workplace" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم هاتف العمل:</label>
+                    <input type="text" name="mother-work-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف النقال:</label>
+                    <input type="text" name="mother-mobile" required>
+                </div>
+                <div class="form-group">
+                    <label>عنوان البريد الإلكتروني:</label>
+                    <input type="email" name="mother-email" required>
+                </div>
+
+                <hr>
+
+                <!-- حالة الطفل الصحية -->
+                <h2>حالة الطفل الصحية</h2>
+                <div class="form-group">
+                    <label>إذا كان طفلك يعاني من أي حالة صحية (الرجاء ذكرها):</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="health-conditions" value="الربو"> الربو</label>
+                        <label><input type="checkbox" name="health-conditions" value="ارتفاع درجة الحرارة"> ارتفاع درجة الحرارة</label>
+                        <label><input type="checkbox" name="health-conditions" value="الثلاسيميا"> الثلاسيميا</label>
+                        <label><input type="checkbox" name="health-conditions" value="التوحد"> التوحد</label>
+                        <label><input type="checkbox" name="health-conditions" value="الجدري"> الجدري</label>
+                        <label><input type="checkbox" name="health-conditions" value="التشنجات"> التشنجات</label>
+                        <label><input type="checkbox" name="health-conditions" value="الصداع المستمر"> الصداع المستمر</label>
+                        <label><input type="checkbox" name="health-conditions" value="مرض قلب خلقي"> مرض قلب خلقي</label>
+                        <label><input type="checkbox" name="health-conditions" value="مرض مفاصل العظام"> مرض مفاصل العظام</label>
+                        <label><input type="checkbox" name="health-conditions" value="أمراض القلب"> أمراض القلب</label>
+                        <label><input type="checkbox" name="health-conditions" value="فقر الدم المنجلي"> فقر الدم المنجلي</label>
+                        <label><input type="checkbox" name="health-conditions" value="الحصبة"> الحصبة</label>
+                        <label><input type="checkbox" name="health-conditions" value="التهاب الكبد"> التهاب الكبد</label>
+                        <label><input type="checkbox" name="health-conditions" value="السكري"> السكري</label>
+                        <label><input type="checkbox" name="health-conditions" value="الصرع"> الصرع</label>
+                        <label><input type="checkbox" name="health-conditions" value="ضعف النظر"> ضعف النظر</label>
+                        <label><input type="checkbox" name="health-conditions" value="أخرى" id="health-other-checkbox" onclick="toggleOtherHealthCondition()"> أخرى:</label>
+                        <input type="text" name="health-conditions-other" id="health-conditions-other" placeholder="يرجى ذكر الحالة" disabled>
+                    </div>
+                </div>
+
+                <!-- الحساسية -->
+                <div class="form-group inline-group">
+                    <label>هل يعاني طفلك من الحساسية من أي نوع من الأطعمة أو الأدوية أو غيرها؟</label>
+                    <label><input type="radio" name="allergy" value="نعم" id="allergy-yes" onclick="toggleAllergyField()" required> نعم</label>
+                    <label><input type="radio" name="allergy" value="لا" onclick="toggleAllergyField()" required> لا</label>
+                    <input type="text" name="allergy-details" id="allergy-details" placeholder="يرجى ذكر الحساسية" disabled>
+                </div>
+
+                <!-- الأدوية -->
+                <div class="form-group inline-group">
+                    <label>هل يتعاطى طفلك أي نوع من الأدوية في الوقت الحالي؟</label>
+                    <label><input type="radio" name="medication" value="نعم" id="medication-yes" onclick="toggleMedicationField()" required> نعم</label>
+                    <label><input type="radio" name="medication" value="لا" onclick="toggleMedicationField()" required> لا</label>
+                    <input type="text" name="medication-details" id="medication-details" placeholder="يرجى ذكر الأدوية" disabled>
+                </div>
+
+                <hr>
+
+                <!-- زر الإرسال -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">تسجيل الطالب</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!-- ربط ملفات الجافا سكربت إذا لزم الأمر -->
+    <script src="student_home_works.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Cleaner Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            resize: vertical;
+            font-family: inherit;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button i {
+            margin-right: 5px;
+        }
+
+        .count-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 600px) {
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Cleaner Pro</h1>
+        
+        <div class="section">
+            <h2>1. Settings</h2>
+            <div class="checkbox-group">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="removeComments">
+                    <label for="removeComments">Remove Comments</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="removeWhitespaces">
+                    <label for="removeWhitespaces">Remove Whitespaces</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="removeStartSpaces">
+                    <label for="removeStartSpaces">Remove Start Spaces</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="removeEndSpaces">
+                    <label for="removeEndSpaces">Remove End Spaces</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="replaceExtraSpaces">
+                    <label for="replaceExtraSpaces">Replace Extra Spaces</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="removeNewlines">
+                    <label for="removeNewlines">Remove New Lines</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>2. Input</h2>
+            <textarea id="inputText" placeholder="Enter your text here..." oninput="updateInputCount()"></textarea>
+            <div class="count-labels">
+                <span id="inputWordCount">Words: 0</span>
+                <span id="inputLetterCount">Letters: 0</span>
+            </div>
+            <div class="button-group">
+                <button onclick="generateText()"><i class="fas fa-magic"></i> Generate Text</button>
+                <button onclick="clearInput()"><i class="fas fa-trash-alt"></i> Clear Input</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>3. Output</h2>
+            <textarea id="outputText" readonly placeholder="Cleaned text will appear here..."></textarea>
+            <div class="count-labels">
+                <span id="outputWordCount">Words: 0</span>
+                <span id="outputLetterCount">Letters: 0</span>
+            </div>
+            <div class="button-group">
+                <button onclick="clearOutput()"><i class="fas fa-trash-alt"></i> Clear Output</button>
+                <button onclick="copyToClipboard()"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateText() {
+            let text = document.getElementById('inputText').value;
+            
+            if (document.getElementById('removeComments').checked) {
+                text = removeComments(text);
+            }
+            if (document.getElementById('removeWhitespaces').checked) {
+                text = removeWhitespaces(text);
+            }
+            if (document.getElementById('removeStartSpaces').checked) {
+                text = removeStartSpaces(text);
+            }
+            if (document.getElementById('removeEndSpaces').checked) {
+                text = removeEndSpaces(text);
+            }
+            if (document.getElementById('replaceExtraSpaces').checked) {
+                text = replaceExtraSpaces(text);
+            }
+            if (document.getElementById('removeNewlines').checked) {
+                text = removeNewlines(text);
+            }
+            
+            document.getElementById('outputText').value = text;
+            updateOutputCount();
+        }
+
+        function removeComments(text) {
+            return text.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+        }
+
+        function removeWhitespaces(text) {
+            return text.replace(/\s+/g, '');
+        }
+
+        function removeStartSpaces(text) {
+            return text.replace(/^\s+/gm, '');
+        }
+
+        function removeEndSpaces(text) {
+            return text.replace(/\s+$/gm, '');
+        }
+
+        function replaceExtraSpaces(text) {
+            return text.replace(/\s{3,}/g, ' ');
+        }
+
+        function removeNewlines(text) {
+            return text.replace(/\r?\n|\r/g, '');
+        }
+
+        function clearInput() {
+            document.getElementById('inputText').value = '';
+            updateInputCount();
+        }
+
+        function clearOutput() {
+            document.getElementById('outputText').value = '';
+            updateOutputCount();
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputText');
+            outputText.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
+        }
+
+        function updateInputCount() {
+            const text = document.getElementById('inputText').value;
+            updateCount(text, 'inputWordCount', 'inputLetterCount');
+        }
+
+        function updateOutputCount() {
+            const text = document.getElementById('outputText').value;
+            updateCount(text, 'outputWordCount', 'outputLetterCount');
+        }
+
+        function updateCount(text, wordCountId, letterCountId) {
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const letters = text.replace(/[^a-zA-Z]/g, '').length;
+            
+            document.getElementById(wordCountId).textContent = `Words: ${words}`;
+            document.getElementById(letterCountId).textContent = `Letters: ${letters}`;
+        }
+
+        // Initialize counts
+        updateInputCount();
+        updateOutputCount();
+    </script>
+</body>
+</html>
