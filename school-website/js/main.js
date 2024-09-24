@@ -2,8 +2,8 @@
 
 $(document).ready(function(){
     // Load Navbar and Footer
-    $("#navbar-placeholder").load("/school-website/includes/navbar.html");
-    $("#footer-placeholder").load("/school-website/includes/footer.html");
+    $("#navbar-placeholder").load("includes/navbar.html");
+    $("#footer-placeholder").load("includes/footer.html");
 
     // Initialize Carousel
     $('.carousel').carousel({
