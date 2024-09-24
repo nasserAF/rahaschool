@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حول روضة ومدرسة الرحى النموذجية</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/school-website/css/style.css" rel="stylesheet">
+    <link href="/school-website/css/aboutraha.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <style>
+        /* aboutraha.css */
+        .aboutraha-container {
+            padding: 60px 0;
+        }
+
+        .aboutraha-container h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .aboutraha-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .aboutraha-section.animate__animated.animate__fadeInUp {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .aboutraha-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .aboutraha-section img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            object-fit: cover;
+            height: 300px;
+        }
+
+        .aboutraha-content {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .aboutraha-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .aboutraha-content p {
+            text-align: justify;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .aboutraha-section, .aboutraha-section:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .aboutraha-section img, .aboutraha-content {
+                width: 100%;
+            }
+
+            .aboutraha-section img {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <div class="container aboutraha-container">
+        <h2>حول روضة ومدرسة الرحى النموذجية</h2>
+
+        <!-- Section 1: تأسيس المدرسة -->
+        <div class="aboutraha-section animate__animated">
+            <img src="/school-website/images/aboutraha/foundation.jpg" alt="تأسيس المدرسة">
+            <div class="aboutraha-content">
+                <h3>تأسيس المدرسة</h3>
+                <p>
+                    "روضة ومدرسة الرحى النموذجية" هي مؤسسة تعليمية رائدة في مدينة إربد، تم تأسيسها على يد المؤسس الراحل، والدنا العزيز، الذي كان يحمل حلمًا كبيرًا يتمثل في إنشاء مدرسة تقدم تعليمًا متكاملاً يجمع بين التطور الأكاديمي والقيم الأخلاقية. منذ البداية، كان هدف المؤسس هو بناء مدرسة تتمتع بمستوى تعليمي رفيع يكون مرآة لاهتمامه العميق بتطوير جيل قادر على مواجهة تحديات الحياة وتحقيق طموحاته. لقد كان يؤمن أن التعليم هو حجر الزاوية في بناء مجتمع متماسك وقوي، ولذلك أسس المدرسة لتكون مركزًا تربويًا يلبي احتياجات الطلاب وأولياء الأمور.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 2: استمرار الحلم -->
+        <div class="aboutraha-section animate__animated">
+            <img src="/school-website/images/aboutraha/continuation.jpg" alt="استمرار الحلم">
+            <div class="aboutraha-content">
+                <h3>استمرار الحلم</h3>
+                <p>
+                    بعد وفاة المؤسس، استمرت زوجته المخلصة وابنته في الحفاظ على هذا الحلم وتطويره بكل حب وإخلاص. لم يكن الهدف فقط استمرار المدرسة، بل تطويرها وتوسيع نطاقها لتلبية احتياجات الطلاب المتغيرة في مجتمع سريع النمو. بفضل جهودهما وتفانيهما، تحولت المدرسة من مجرد مؤسسة تعليمية إلى صرح تربوي مميز، يقدم تجربة تعليمية شاملة تعزز من قدرات الطلاب الأكاديمية والاجتماعية.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 3: فلسفة التعليم -->
+        <div class="aboutraha-section animate__animated">
+            <img src="/school-website/images/aboutraha/education-philosophy.jpg" alt="فلسفة التعليم">
+            <div class="aboutraha-content">
+                <h3>فلسفة التعليم</h3>
+                <p>
+                    المدرسة اليوم ليست فقط مكانًا للتعليم، بل هي نموذج متكامل للتعليم العصري الذي يجمع بين الحفاظ على القيم التقليدية الأصيلة ومواكبة التطورات الحديثة في التعليم. منذ تأسيسها، اعتمدت المدرسة على فلسفة تركز على التعليم الشامل الذي لا يقتصر على الكتاب المدرسي، بل يمتد ليشمل بناء شخصية الطالب وتطوير مهاراته الحياتية. نحن نؤمن بأن التعليم ليس فقط وسيلة للحصول على المعرفة، بل هو عملية مستمرة تساهم في بناء شخصيات قوية ومستقلة قادرة على التأثير في المجتمع.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 4: بيئة تعليمية داعمة -->
+        <div class="aboutraha-section animate__animated">
+            <img src="/school-website/images/aboutraha/supportive-environment.jpg" alt="بيئة تعليمية داعمة">
+            <div class="aboutraha-content">
+                <h3>بيئة تعليمية داعمة</h3>
+                <p>
+                    منذ اللحظة التي يخطو فيها الطفل أبواب "روضة ومدرسة الرحى النموذجية"، نعتبره جزءًا من عائلة المدرسة الكبيرة. نعتمد على نهج تربوي يعزز من التواصل والتعاون بين الطلاب والمعلمين وأولياء الأمور، مما يسهم في خلق بيئة تعليمية داعمة ومحفزة. هدفنا هو تمكين الطلاب من استكشاف إمكاناتهم الكاملة، وتحفيزهم على تحقيق أفضل ما لديهم، سواء في المجال الأكاديمي أو الاجتماعي أو الشخصي.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 5: التعاون مع الأسرة -->
+        <div class="aboutraha-section animate__animated">
+            <img src="/school-website/images/aboutraha/collaboration.jpg" alt="التعاون مع الأسرة">
+            <div class="aboutraha-content">
+                <h3>التعاون مع الأسرة</h3>
+                <p>
+                    بفضل هذا الإرث العائلي الذي يرتكز على الالتزام والتفاني، استطاعت المدرسة أن تحافظ على رؤيتها ورسالتها الأصلية وتطور نفسها باستمرار لتواكب التطورات التعليمية والتربوية الحديثة. نحرص دائمًا على تقديم تعليم يتسم بالجودة ويستجيب لمتطلبات العصر، مع الحفاظ على الأسس القيمية التي وضعها المؤسس. "روضة ومدرسة الرحى النموذجية" ليست مجرد مدرسة؛ إنها مجتمع متكامل يضم الجميع – طلاب، معلمين، وأولياء أمور – للعمل معًا من أجل بناء مستقبل أفضل.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 6: فريق العمل والمستقبل -->
+        <div class="aboutraha-section animate__animated">
+            <img src="/school-website/images/aboutraha/team-future.jpg" alt="فريق العمل والمستقبل">
+            <div class="aboutraha-content">
+                <h3>فريق العمل والمستقبل</h3>
+                <p>
+                    نفتخر اليوم بأننا نواصل هذه المسيرة التعليمية بنجاح، ونحرص على تقديم كل ما هو جديد في مجال التعليم، سواء من حيث المناهج أو التقنيات الحديثة أو البرامج التربوية. رؤيتنا للمستقبل تعتمد على تحسين مستمر وتجديد دائم في أساليب التدريس، مع الحفاظ على جوهر رسالتنا في تقديم تعليم عالي الجودة يتسم بالشمولية والإنسانية.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Waypoints JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/school-website/js/main.js"></script>
+    <script>
+        // Animation Trigger
+        $(document).ready(function(){
+            $('.aboutraha-section').each(function(){
+                var element = $(this);
+                element.waypoint(function(direction){
+                    element.addClass('animate__fadeInUp animate__animated');
+                }, {
+                    offset: '80%'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

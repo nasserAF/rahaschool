@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - روضة ومدرسة الرحى النموذجية</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/school-website/css/style.css" rel="stylesheet">
+    <link href="/school-website/css/contact.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <style>
+        /* contact.css */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .contact-info, .contact-form-container {
+            flex: 0 0 50%;
+            padding: 20px;
+        }
+
+        .contact-info {
+            background-color: #f8f9fa;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            text-align: justify;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .contact-details {
+            margin-top: 20px;
+        }
+
+        .contact-details p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .contact-details i {
+            margin-left: 10px;
+            color: var(--secondary-color);
+        }
+
+        .social-icons a {
+            color: #fff;
+            background-color: var(--secondary-color);
+            padding: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+        }
+
+        .contact-form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .contact-form-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .error-message, .success-message {
+            display: none;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #E74C3C;
+        }
+
+        .success-message {
+            color: #27AE60;
+        }
+
+        @media (max-width: 767px) {
+            .contact-info, .contact-form-container {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="contact-container animate__animated animate__fadeInUp">
+            <!-- قسم المعلومات -->
+            <div class="contact-info">
+                <h3>اتصل بنا</h3>
+                <p>
+                    نحن في "روضة ومدرسة الرحى النموذجية" نؤمن بأهمية التواصل المستمر بين المدرسة وأولياء الأمور والزوار. نسعد دائمًا باستقبال آرائكم واقتراحاتكم التي تساعدنا على تحسين تجربتنا التعليمية. إذا كان لديكم أي استفسارات أو أسئلة حول المدرسة أو خدماتنا، فلا تترددوا في التواصل معنا. فريقنا جاهز للإجابة عن جميع استفساراتكم وتقديم الدعم اللازم. نرحب أيضًا بتقديم الشكاوى أو الملاحظات التي تساهم في تطوير الأداء وتعزيز جودة التعليم. تواصلكم معنا هو جزء مهم من نجاحنا ونجاح أبنائنا.
+                </p>
+                <div class="contact-details">
+                    <p><strong>أوقات الدوام:</strong><br>من الأحد إلى الخميس من الساعة 7 صباحًا إلى 2:00 مساءً</p>
+                    <p><strong>رقم هاتف الروضة:</strong><br>079-1234567 <i class="fas fa-phone-alt"></i></p>
+                    <p><strong>رقم هاتف المدرسة:</strong><br>079-7654321 <i class="fas fa-phone-alt"></i></p>
+                    <p><strong>البريد الإلكتروني:</strong><br>info@rahaschool.com <i class="fas fa-envelope"></i></p>
+                </div>
+                <div class="social-icons mt-4">
+                    <a href="https://facebook.com" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" class="text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/0797979797" class="text-white"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <!-- قسم النموذج -->
+            <div class="contact-form-container">
+                <h3>إرسال رسالة</h3>
+                <div class="error-message" id="errorMessage">
+                    يرجى ملء جميع الحقول بشكل صحيح.
+                </div>
+                <div class="success-message" id="successMessage">
+                    شكرًا لك على رسالتك! سنقوم بالرد عليك في أقرب وقت ممكن.
+                </div>
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">الاسم</label>
+                        <input type="text" class="form-control" id="name" placeholder="أدخل اسمك" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">عنوان الرسالة</label>
+                        <input type="text" class="form-control" id="subject" placeholder="أدخل عنوان الرسالة" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">نص الرسالة</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="أدخل رسالتك" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom w-100">إرسال</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Waypoints JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- Custom JS -->
+    <!-- Custom JS -->
+    <script src="/school-website/js/main.js"></script>
+    <script>
+        // contact.js (يمكن إضافته إلى main.js أو إنشاء ملف منفصل)
+        $(document).ready(function(){
+            // التعامل مع تقديم النموذج
+            $('#contactForm').on('submit', function(event){
+                event.preventDefault(); // منع إعادة تحميل الصفحة
+
+                // الحصول على القيم المدخلة
+                var name = $('#name').val().trim();
+                var subject = $('#subject').val().trim();
+                var message = $('#message').val().trim();
+
+                // التحقق من صحة البيانات
+                if(name === '' || subject === '' || message === ''){
+                    $('#errorMessage').fadeIn();
+                    $('#successMessage').fadeOut();
+                } else {
+                    // يمكن هنا إضافة كود لإرسال البيانات إلى الخادم باستخدام AJAX
+                    // على سبيل المثال، باستخدام $.ajax()
+
+                    // إظهار رسالة النجاح وتفريغ الحقول
+                    $('#successMessage').fadeIn();
+                    $('#errorMessage').fadeOut();
+                    $('#contactForm')[0].reset();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

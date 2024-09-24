@@ -1,0 +1,29 @@
+/* director.css */
+.director-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.director-container .card {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.director-container p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify;
+    color: var(--text-color);
+}
+
+@media (max-width: 576px) {
+    .director-container .card {
+        padding: 20px;
+    }
+
+    .director-container p {
+        font-size: 1rem;
+    }
+}
+    

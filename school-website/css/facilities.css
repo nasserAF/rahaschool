@@ -1,0 +1,40 @@
+/* facilities.css */
+
+.facilities-container {
+    padding: 60px 0;
+}
+
+.facilities-container h2 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.animate__fadeInUp {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section img {
+    transition: transform 0.3s ease;
+}
+
+.section img:hover {
+    transform: scale(1.05);
+}
+
+.section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.section p {
+    color: var(--text-color);
+    line-height: 1.8;
+    text-align: justify;
+}

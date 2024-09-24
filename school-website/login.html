@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - روضة ومدرسة الرحى النموذجية</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/school-website/css/style.css" rel="stylesheet">
+    <link href="/school-website/css/login.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <style>
+        /* login.css */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .error-message {
+            color: #E74C3C;
+            text-align: center;
+            margin-bottom: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Login Form -->
+    <div class="container">
+        <div class="login-container animate__animated animate__fadeInUp">
+            <h2>تسجيل الدخول</h2>
+            <div class="error-message" id="errorMessage">
+                اسم المستخدم أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.
+            </div>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="username" class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-control" id="username" placeholder="أدخل اسم المستخدم" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-control" id="password" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn btn-custom w-100">دخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Waypoints JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/school-website/js/main.js"></script>
+    <script>
+        // login.js (يمكن إضافته إلى main.js أو إنشاء ملف منفصل)
+        $(document).ready(function(){
+            // التعامل مع تقديم النموذج
+            $('#loginForm').on('submit', function(event){
+                event.preventDefault(); // منع إعادة تحميل الصفحة
+
+                // الحصول على القيم المدخلة
+                var username = $('#username').val().trim();
+                var password = $('#password').val().trim();
+
+                // التحقق من صحة البيانات
+                if(username === 'admin' && password === 'admin'){
+                    // التحقق ناجح، الانتقال إلى subjects.html
+                    window.location.href = '/public/subjects.html';
+                } else {
+                    // التحقق فشل، عرض رسالة الخطأ وتفريغ الحقول
+                    $('#errorMessage').fadeIn();
+                    $('#username').val('');
+                    $('#password').val('');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

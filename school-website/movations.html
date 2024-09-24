@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المواصلات المدرسية - روضة ومدرسة الرحى النموذجية</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/school-website/css/style.css" rel="stylesheet">
+    <link href="/school-website/css/movations.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <style>
+        /* movations.css */
+        .movations-container {
+            padding: 60px 0;
+        }
+
+        .movations-container h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .movation-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .movation-section.animate__animated.animate__fadeInUp {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .movation-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .movation-section img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            object-fit: cover;
+            height: 300px;
+        }
+
+        .movation-content {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .movation-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .movation-content p {
+            text-align: justify;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .movation-section, .movation-section:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .movation-section img, .movation-content {
+                width: 100%;
+            }
+
+            .movation-section img {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <div class="container movations-container">
+        <h2>المواصلات المدرسية</h2>
+
+        <!-- Section 1: الحافلات -->
+        <div class="movation-section animate__animated">
+            <img src="/school-website/images/movations/buses.jpg" alt="الحافلات">
+            <div class="movation-content">
+                <h3>الحافلات</h3>
+                <p>
+                    تضم المدرسة مجموعة من الحافلات المدرسية الحديثة المجهزة بأعلى معايير السلامة والأمان. جميع الحافلات مزودة بأحزمة أمان فردية، ومقاعد مريحة، وأجهزة تهوية وتكييف لضمان راحة الطلاب في جميع الأوقات. الحافلات تخضع لصيانة دورية للتأكد من أنها تعمل بأقصى كفاءة وسلامة. كما أننا نحرص على الالتزام بمعايير السلامة المرورية وتحديث الحافلات بشكل دوري لضمان توفير تجربة تنقل آمنة ومريحة.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 2: الالتزام بمعايير الأمان -->
+        <div class="movation-section animate__animated">
+            <img src="/school-website/images/movations/safety.jpg" alt="الالتزام بمعايير الأمان">
+            <div class="movation-content">
+                <h3>الالتزام بمعايير الأمان</h3>
+                <p>
+                    نعتبر سلامة الطلاب أولوية قصوى، ولهذا يتم تدريب السائقين على أسس القيادة الآمنة وكيفية التعامل مع الطوارئ. جميع السائقين في المدرسة مرخصون ويمتلكون خبرة طويلة في العمل مع الأطفال. كما يتم متابعة سلوك السائقين وتقييمهم بانتظام للتأكد من الالتزام الصارم بقوانين المرور وسلامة الطلاب. يتم تزويد الحافلات بأجهزة تتبع GPS لمراقبة مساراتها والتأكد من أن جميع الحافلات تلتزم بالجداول الزمنية المحددة والمسارات الآمنة.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 3: المشرفين والمرافقة -->
+        <div class="movation-section animate__animated">
+            <img src="/school-website/images/movations/supervisors.jpg" alt="المشرفين والمرافقة">
+            <div class="movation-content">
+                <h3>المشرفين والمرافقة</h3>
+                <p>
+                    لتعزيز إجراءات الأمان، تحتوي كل حافلة على مشرف أو مشرفة يرافقون الطلاب خلال رحلتهم من وإلى المدرسة. دور المشرفين هو التأكد من التزام الطلاب بأحزمة الأمان، مراقبة سلوكهم داخل الحافلة، ومساعدتهم في الصعود والنزول بأمان. كما يتولى المشرفون مسؤولية التواصل مع أولياء الأمور في حال حدوث أي طارئ، والتأكد من تسليم الطلاب في النقاط المحددة لهم بسلامة.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 4: المسارات والجدولة -->
+        <div class="movation-section animate__animated">
+            <img src="/school-website/images/movations/routes.jpg" alt="المسارات والجدولة">
+            <div class="movation-content">
+                <h3>المسارات والجدولة</h3>
+                <p>
+                    نقوم بتصميم مسارات الحافلات المدرسية لتغطي معظم مناطق مدينة إربد والمناطق المحيطة بها، مع مراعاة تقليل مدة الرحلة وضمان وصول الطلاب في الوقت المحدد لبداية اليوم الدراسي. يتم تحديث المسارات بانتظام بناءً على احتياجات الطلاب وتغير أماكن إقامتهم. كما نحرص على توفير نقاط تجمع آمنة ومناسبة لانتظار الطلاب في مواقع قريبة من منازلهم، مما يضمن سهولة الوصول للحافلة وتقليل أي تأخير.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 5: التواصل مع أولياء الأمور -->
+        <div class="movation-section animate__animated">
+            <img src="/school-website/images/movations/communication.jpg" alt="التواصل مع أولياء الأمور">
+            <div class="movation-content">
+                <h3>التواصل مع أولياء الأمور</h3>
+                <p>
+                    لضمان راحة واطمئنان أولياء الأمور، توفر المدرسة نظامًا للتواصل الفوري مع أولياء الأمور فيما يتعلق برحلة الحافلة. يتم إرسال إشعارات تنبيهية عبر الرسائل النصية أو التطبيقات الإلكترونية لإبلاغ أولياء الأمور بوصول الحافلة إلى نقطة التجمع أو المدرسة. في حالة حدوث أي طارئ أو تأخير غير متوقع، يتم إبلاغ أولياء الأمور فورًا لضمان الشفافية والتواصل المستمر.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Waypoints JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/school-website/js/main.js"></script>
+    <script>
+        // Animation Trigger
+        $(document).ready(function(){
+            $('.movation-section').each(function(){
+                var element = $(this);
+                element.waypoint(function(direction){
+                    element.addClass('animate__fadeInUp animate__animated');
+                }, {
+                    offset: '80%'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

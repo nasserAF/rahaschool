@@ -1,0 +1,22 @@
+/* faq.css */
+
+.accordion-button {
+    background-color: var(--secondary-color);
+    color: #fff;
+    font-weight: 600;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.accordion-body {
+    background-color: #fff;
+    color: var(--text-color);
+}
+
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #dee2e6;
+}
