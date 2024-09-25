@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function loadNavigationBar() {
-    fetch('/rahaschool/public/navigationbar.htm')
+    fetch('navigationbar.htm')
         .then(response => response.text())
         .then(data => {
             const navbarPlaceholder = document.getElementById('navbar-placeholder');
@@ -18,7 +18,7 @@ function loadNavigationBar() {
         .catch(error => {
             console.error('خطأ في تحميل navigationbar.htm:', error);
         });
-} 
+}
 
 let subjectsMap = {}; // لتخزين subject_id مع subject_name و grade_id
 let selectedSubjects = []; // لتخزين المواد المختارة للمعلمة الحالية
