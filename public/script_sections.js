@@ -22,7 +22,7 @@ document.getElementById('saveDailyPeriodsBtn').addEventListener('click', functio
     };
 
     // إرسال الطلب لحفظ الحصص اليومية
-    fetch(`/rahaschool/grades_sections/${gradeId}`, {
+    fetch(`/rahaschool/grades_sections.json/${gradeId}`, {
         method: 'PUT', // تعديل الصف الموجود
         headers: {
             'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ document.getElementById('gradeSelect').addEventListener('change', function() {
 
     if (gradeId && gradeId !== 'new') {
         // إذا كان الصف مسجل، جلب البيانات
-        fetch(`/rahaschool/grades_sections/${gradeId}`)
+        fetch(`/rahaschool/grades_sections.json/${gradeId}`)
             .then(response => {
                 if (!response.ok) {
                     if (response.status === 404) {
@@ -229,7 +229,7 @@ function addNewGrade(gradeId, gradeName) {
     const sectionName = `الشعبة أ`;
 
     // إرسال طلب لإضافة الصف الجديد مع الشعبة
-    fetch('/rahaschool/grades_sections', {
+    fetch('/rahaschool/grades_sections.json', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -262,7 +262,7 @@ function addNewGrade(gradeId, gradeName) {
 }
 
 function loadSections(gradeId) {
-    fetch(`/rahaschool/grades_sections/${gradeId}`)
+    fetch(`/rahaschool/grades_sections.json/${gradeId}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -297,7 +297,7 @@ function addNewGradeAutomatically(gradeId) {
     const sectionName = `الشعبة أ`;
 
     // إرسال طلب لإضافة الصف الجديد مع الشعبة الافتراضية
-    fetch('/rahaschool/grades_sections', {
+    fetch('/rahaschool/grades_sections.json', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -413,7 +413,7 @@ function displaySections(sections) {
 
 function addSection(gradeId) {
     // جلب الشُعب الحالية للصف الدراسي المحدد
-    fetch(`/rahaschool/grades_sections/${gradeId}`)
+    fetch(`/rahaschool/grades_sections.json/${gradeId}`)
         .then(response => response.json())
         .then(data => {
             if (!data.sections) {
@@ -429,7 +429,7 @@ function addSection(gradeId) {
             const sectionName = `الشعبة ${nextArabicLetter}`;
 
             // إرسال طلب إضافة الشُعبة الجديدة
-            fetch(`/rahaschool/grades_sections/${gradeId}/sections`, {
+            fetch(`/rahaschool/grades_sections.json/${gradeId}/sections`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -475,7 +475,7 @@ function getNextArabicLetter(sections) {
 
 
 function updateSection(sectionId, newName) {
-    fetch(`/rahaschool/grades_sections/sections/${sectionId}`, {
+    fetch(`/rahaschool/grades_sections.json/${sectionId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
