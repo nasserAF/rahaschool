@@ -1,11 +1,54 @@
-// script_sections.js
+// sections.js
 
 document.addEventListener("DOMContentLoaded", function() {
     loadNavigationBar();
     initializePage();
+    attachEventListeners();
 });
 
-document.getElementById('saveDailyPeriodsBtn').addEventListener('click', function() {
+function attachEventListeners() {
+    const saveBtn = document.getElementById('saveDailyPeriodsBtn');
+    const addSectionBtn = document.getElementById('addSectionBtn');
+    const gradeSelect = document.getElementById('gradeSelect');
+    const addSectionForm = document.getElementById('addSectionForm');
+
+    if (saveBtn) {
+        saveBtn.addEventListener('click', saveDailyPeriods);
+    }
+
+    if (addSectionBtn) {
+        addSectionBtn.addEventListener('click', function() {
+            const gradeId = gradeSelect.value;
+
+            if (gradeId && gradeId !== 'new') {
+                addSection(gradeId);
+            } else {
+                alert('الرجاء اختيار صف لإضافة الشُعبة.');
+            }
+        });
+    }
+
+    if (gradeSelect) {
+        gradeSelect.addEventListener('change', handleGradeChange);
+    }
+
+    if (addSectionForm) {
+        addSectionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const gradeId = gradeSelect.value;
+
+            if (gradeId && gradeId !== 'new') {
+                addSection(gradeId);
+            } else if (gradeId === 'new') {
+                addNewGrade();
+            } else {
+                alert('الرجاء اختيار الصف.');
+            }
+        });
+    }
+}
+
+function saveDailyPeriods() {
     const gradeId = document.getElementById('gradeSelect').value;
 
     if (!gradeId || gradeId === 'new') {
@@ -22,7 +65,7 @@ document.getElementById('saveDailyPeriodsBtn').addEventListener('click', functio
     };
 
     // إرسال الطلب لحفظ الحصص اليومية
-    fetch(`/rahaschool/grades_sections.json/${gradeId}`, {
+    fetch(`/rahaschool/grades_sections/${gradeId}`, {
         method: 'PUT', // تعديل الصف الموجود
         headers: {
             'Content-Type': 'application/json'
@@ -43,29 +86,19 @@ document.getElementById('saveDailyPeriodsBtn').addEventListener('click', functio
         console.error('Error saving daily periods:', error);
         alert('حدث خطأ أثناء حفظ الحصص اليومية.');
     });
-});
+}
 
-document.getElementById('addSectionBtn').addEventListener('click', function() {
-    const gradeId = document.getElementById('gradeSelect').value;
-
-    if (gradeId && gradeId !== 'new') {
-        addSection(gradeId); // استدعاء دالة إضافة الشُعبة
-    } else {
-        alert('الرجاء اختيار صف لإضافة الشُعبة.');
-    }
-});
-
-document.getElementById('gradeSelect').addEventListener('change', function() {
+function handleGradeChange() {
     const gradeId = this.value;
 
     if (gradeId && gradeId !== 'new') {
         // إذا كان الصف مسجل، جلب البيانات
-        fetch(`/rahaschool/grades_sections.json/${gradeId}`)
+        fetch(`/rahaschool/grades_sections/${gradeId}`)
             .then(response => {
                 if (!response.ok) {
                     if (response.status === 404) {
                         // الصف غير موجود، أضفه ثم عبئ الحقول بقيم 0
-                        addNewGradeAutomatically(gradeId).then(() => {
+                        return addNewGradeAutomatically(gradeId).then(() => {
                             resetPeriodsForm(); // تعيين القيم إلى 0 بعد إضافة الصف
                         });
                     }
@@ -77,6 +110,9 @@ document.getElementById('gradeSelect').addEventListener('change', function() {
                 if (data.periods_per_day) {
                     fillPeriodsForm(data.periods_per_day); // تعبئة البيانات إذا كان الصف مسجلاً
                 }
+                if (data.sections) {
+                    displaySections(data.sections);
+                }
             })
             .catch(error => {
                 console.error('Error fetching grade sections:', error);
@@ -86,10 +122,12 @@ document.getElementById('gradeSelect').addEventListener('change', function() {
         // إعادة تعيين الحقول لقيم 0 عند إضافة صف جديد
         document.getElementById('newGradeFields').style.display = 'block';
         resetPeriodsForm(); // تعيين القيم إلى 0 عند إضافة صف جديد
+        document.getElementById('sectionsContainer').innerHTML = '';
     } else {
         document.getElementById('newGradeFields').style.display = 'none';
+        document.getElementById('sectionsContainer').innerHTML = '';
     }
-});
+}
 
 // إضافة دالة جديدة لإعادة تعيين الحقول لقيم 0
 function resetPeriodsForm() {
@@ -140,7 +178,6 @@ function initializeNavbar() {
 
 function initializePage() {
     populateGradeDropdown();
-    setupEventListeners();
 }
 
 function populateGradeDropdown() {
@@ -166,38 +203,6 @@ function populateGradeDropdown() {
         });
 }
 
-function setupEventListeners() {
-    const gradeSelect = document.getElementById('gradeSelect');
-    const addSectionForm = document.getElementById('addSectionForm');
-
-    gradeSelect.addEventListener('change', function() {
-        const gradeId = this.value;
-        if (gradeId && gradeId !== 'new') {
-            loadSections(gradeId);
-            document.getElementById('newGradeFields').style.display = 'none';
-        } else if (gradeId === 'new') {
-            document.getElementById('sectionsContainer').innerHTML = '';
-            displayNewGradeFields();
-        } else {
-            document.getElementById('sectionsContainer').innerHTML = '';
-            document.getElementById('newGradeFields').style.display = 'none';
-        }
-    });
-
-    addSectionForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const gradeId = document.getElementById('gradeSelect').value;
-
-        if (gradeId && gradeId !== 'new') {
-            addSection(gradeId);
-        } else if (gradeId === 'new') {
-            addNewGrade();
-        } else {
-            alert('الرجاء اختيار الصف.');
-        }
-    });
-}
-
 function displayNewGradeFields() {
     const periodsContainer = document.getElementById('periodsContainer');
     periodsContainer.innerHTML = '';
@@ -216,7 +221,15 @@ function displayNewGradeFields() {
     document.getElementById('newGradeFields').style.display = 'block';
 }
 
-function addNewGrade(gradeId, gradeName) {
+function addNewGrade() {
+    const gradeId = document.getElementById('newGradeId').value.trim();
+    const gradeName = document.getElementById('newGradeName').value.trim();
+
+    if (!gradeId || !gradeName) {
+        alert('الرجاء إدخال معرف واسم الصف الجديد.');
+        return;
+    }
+
     const periodsPerDay = {
         Sunday: parseInt(document.getElementById('period_Sunday').value, 10) || 6,
         Monday: parseInt(document.getElementById('period_Monday').value, 10) || 6,
@@ -229,7 +242,7 @@ function addNewGrade(gradeId, gradeName) {
     const sectionName = `الشعبة أ`;
 
     // إرسال طلب لإضافة الصف الجديد مع الشعبة
-    fetch('/rahaschool/grades_sections.json', {
+    fetch('/rahaschool/grades_sections', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -253,6 +266,9 @@ function addNewGrade(gradeId, gradeName) {
         } else {
             alert('تمت إضافة الصف والشُعبة بنجاح.');
             loadSections(gradeId);
+            populateGradeDropdown();
+            document.getElementById('addSectionForm').reset();
+            document.getElementById('newGradeFields').style.display = 'none';
         }
     })
     .catch(error => {
@@ -262,17 +278,19 @@ function addNewGrade(gradeId, gradeName) {
 }
 
 function loadSections(gradeId) {
-    fetch(`/rahaschool/grades_sections.json/${gradeId}`)
-        .then(response => response.json())
+    fetch(`/rahaschool/grades_sections/${gradeId}`)
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 404) {
+                    // إذا كان الصف غير موجود، أضف الصف بشكل أوتوماتيكي إلى ملف grades_sections.json
+                    return addNewGradeAutomatically(gradeId);
+                }
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-            if (data.error) {
-                // إذا كان الصف غير موجود، أضف الصف إلى grades_sections.json مع الحصص اليومية 0
-                alert(data.error);
-
-                // إضافة الصف بشكل أوتوماتيكي إلى ملف grades_sections.json
-                addNewGradeAutomatically(gradeId);
-            } else {
-                // إذا كانت البيانات موجودة، عرض الشُعب
+            if (data.sections) {
                 displaySections(data.sections);
             }
         })
@@ -297,7 +315,7 @@ function addNewGradeAutomatically(gradeId) {
     const sectionName = `الشعبة أ`;
 
     // إرسال طلب لإضافة الصف الجديد مع الشعبة الافتراضية
-    fetch('/rahaschool/grades_sections.json', {
+    return fetch('/rahaschool/grades_sections', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -321,29 +339,13 @@ function addNewGradeAutomatically(gradeId) {
         } else {
             alert('تمت إضافة الصف بنجاح. يمكنك الآن تعديل الحصص اليومية وإضافة الشعب.');
             resetPeriodsForm(); // إعادة تعيين القيم إلى 0
+            populateGradeDropdown();
         }
     })
     .catch(error => {
         console.error('Error adding grade automatically:', error);
         alert('حدث خطأ أثناء إضافة الصف.');
     });
-}
-
-function clearSectionsAndShowNewGradeFields(gradeId) {
-    const gradeName = document.querySelector(`#gradeSelect option[value="${gradeId}"]`).textContent;
-
-    // إظهار حقول إدخال الحصص اليومية للمستخدم
-    document.getElementById('period_Sunday').value = '';
-    document.getElementById('period_Monday').value = '';
-    document.getElementById('period_Tuesday').value = '';
-    document.getElementById('period_Wednesday').value = '';
-    document.getElementById('period_Thursday').value = '';
-
-    // إظهار الحقول الخاصة بتسجيل الشعبة
-    document.getElementById('newGradeFields').style.display = 'block';
-    document.getElementById('sectionsContainer').innerHTML = ''; // إخفاء الشعب القديمة إن وجدت
-
-    // حذف إضافة الصف تلقائيًا
 }
 
 function displaySections(sections) {
@@ -387,8 +389,8 @@ function displaySections(sections) {
     container.appendChild(table);
 
     // إضافة مستمعي الأحداث لأزرار التعديل والحذف
-    const editButtons = document.querySelectorAll('.edit-btn');
-    const deleteButtons = document.querySelectorAll('.delete-btn');
+    const editButtons = container.querySelectorAll('.edit-btn');
+    const deleteButtons = container.querySelectorAll('.delete-btn');
 
     editButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -413,7 +415,7 @@ function displaySections(sections) {
 
 function addSection(gradeId) {
     // جلب الشُعب الحالية للصف الدراسي المحدد
-    fetch(`/rahaschool/grades_sections.json/${gradeId}`)
+    fetch(`/rahaschool/grades_sections/${gradeId}`)
         .then(response => response.json())
         .then(data => {
             if (!data.sections) {
@@ -429,7 +431,7 @@ function addSection(gradeId) {
             const sectionName = `الشعبة ${nextArabicLetter}`;
 
             // إرسال طلب إضافة الشُعبة الجديدة
-            fetch(`/rahaschool/grades_sections.json/${gradeId}/sections`, {
+            fetch(`/rahaschool/grades_sections/${gradeId}/sections`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -451,6 +453,7 @@ function addSection(gradeId) {
             })
             .catch(error => {
                 console.error('خطأ في إضافة الشُعبة:', error);
+                alert('حدث خطأ أثناء إضافة الشُعبة.');
             });
         })
         .catch(error => {
@@ -473,9 +476,8 @@ function getNextArabicLetter(sections) {
     return letters[currentCount] || 'ي'; // إذا تجاوز عدد الحروف، استخدم 'ي'
 }
 
-
 function updateSection(sectionId, newName) {
-    fetch(`/rahaschool/grades_sections.json/${sectionId}`, {
+    fetch(`/rahaschool/grades_sections/sections/${sectionId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -496,6 +498,7 @@ function updateSection(sectionId, newName) {
     })
     .catch(error => {
         console.error('خطأ في تحديث الشُعبة:', error);
+        alert('حدث خطأ أثناء تحديث الشُعبة.');
     });
 }
 
@@ -515,6 +518,7 @@ function deleteSection(sectionId) {
     })
     .catch(error => {
         console.error('خطأ في حذف الشُعبة:', error);
+        alert('حدث خطأ أثناء حذف الشُعبة.');
     });
 }
 
