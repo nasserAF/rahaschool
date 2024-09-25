@@ -52,7 +52,7 @@ function initializePage() {
             });
     }
 
-    function loadTeachers() {
+    /*function loadTeachers() {
         fetch('/api/teachers')
             .then(response => response.json())
             .then(data => {
@@ -62,7 +62,7 @@ function initializePage() {
             .catch(error => {
                 console.error('خطأ في تحميل teachers.json:', error);
             });
-    }
+    }*/
 
     function displayTeachers() {
         const tableBody = document.querySelector('#teachersTable tbody');
