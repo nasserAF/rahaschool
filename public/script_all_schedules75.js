@@ -111,7 +111,7 @@ function createTable(gradeName, sectionName, schedule) {
 // دالة لعرض الجداول
 async function displaySchedules() {
     // مسار ملف JSON المقدم من السيرفر
-    const data = await loadJSON('/all_schedules_75.json');
+    const data = await loadJSON('/rahaschool/all_schedules_75.json');
     if (!data) {
         const container = document.getElementById('tables-container');
         container.innerHTML = "<p>تعذر تحميل بيانات الجداول.</p>";
