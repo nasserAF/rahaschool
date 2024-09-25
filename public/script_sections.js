@@ -4,7 +4,59 @@ document.addEventListener("DOMContentLoaded", function() {
     loadNavigationBar();
     initializePage();
     attachEventListeners();
+    displayAllSections();
 });
+
+function displayAllSections() {
+    fetch('/rahaschool/grades_sections.json') // تأكد من مسار الملف الصحيح
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('sectionsContainer');
+            container.innerHTML = ''; // مسح المحتوى الحالي
+            
+            const table = document.createElement('table');
+            table.classList.add('table');
+            
+            // إنشاء رأس الجدول
+            const thead = document.createElement('thead');
+            thead.innerHTML = `
+                <tr>
+                    <th>الصف</th>
+                    <th>الشعبة</th>
+                    <th>الأحد</th>
+                    <th>الإثنين</th>
+                    <th>الثلاثاء</th>
+                    <th>الأربعاء</th>
+                    <th>الخميس</th>
+                </tr>
+            `;
+            table.appendChild(thead);
+            
+            // إنشاء جسم الجدول
+            const tbody = document.createElement('tbody');
+            data.grades.forEach(grade => {
+                grade.sections.forEach(section => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${grade.grade_name}</td>
+                        <td>${section.section_name}</td>
+                        <td>${grade.periods_per_day.Sunday}</td>
+                        <td>${grade.periods_per_day.Monday}</td>
+                        <td>${grade.periods_per_day.Tuesday}</td>
+                        <td>${grade.periods_per_day.Wednesday}</td>
+                        <td>${grade.periods_per_day.Thursday}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+            table.appendChild(tbody);
+            container.appendChild(table);
+        })
+        .catch(error => {
+            console.error('خطأ في تحميل بيانات الشُعب:', error);
+            alert('حدث خطأ أثناء تحميل بيانات الشُعب.');
+        });
+}
 
 function attachEventListeners() {
     const saveBtn = document.getElementById('saveDailyPeriodsBtn');
