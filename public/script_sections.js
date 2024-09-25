@@ -34,6 +34,7 @@ function displayAllSections() {
             
             // إنشاء جسم الجدول
             const tbody = document.createElement('tbody');
+            console.log("-----------  data: ",data)
             data.grades.forEach(grade => {
                 grade.sections.forEach(section => {
                     const tr = document.createElement('tr');
