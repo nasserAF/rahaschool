@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     // Load Navigation Bar
-    fetch('navigationbar.htm')
+    fetch('/rahaschool/public/navigationbar.htm')
         .then(response => response.text())
         .then(data => {
             const navbarPlaceholder = document.getElementById('navbar-placeholder');
@@ -47,7 +47,7 @@ function initializePage() {
 
     function loadData() {
         // Load Config.json
-        fetch('/config.json')
+        fetch('/rahaschool/config.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -69,7 +69,7 @@ function initializePage() {
     }
 
     function loadSubjects() {
-        fetch('/api/subjects')
+        fetch('/rahaschool/subjects')
             .then(response => response.json())
             .then(data => {
                 subjects = data;
@@ -302,7 +302,7 @@ function initializePage() {
     // Delete Subject
     function deleteSubject(subjectId) {
         if (confirm('هل أنت متأكد من حذف هذه المادة؟')) {
-            fetch(`/api/subjects/${subjectId}`, {
+            fetch(`/rahaschool/subjects/${subjectId}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
