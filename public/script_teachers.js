@@ -53,7 +53,7 @@ function initializePage() {
     }
 
     function loadTeachers() {
-        fetch('/api/teachers')
+        fetch('/rahaschool/teachers')
             .then(response => response.json())
             .then(data => {
                 teachers = data;
