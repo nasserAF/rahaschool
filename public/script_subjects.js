@@ -69,7 +69,7 @@ function initializePage() {
     }
 
     function loadSubjects() {
-        fetch('/rahaschool/subjects')
+        fetch('/rahaschool/subjects.json')
             .then(response => response.json())
             .then(data => {
                 subjects = data;
