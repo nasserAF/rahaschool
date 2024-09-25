@@ -196,34 +196,35 @@ if (addSubjectBtn) {
 }
 
     // Populate Subject Select based on Grade Selection
-    const gradeSelectElement = document.getElementById('gradeSelect');
-    if (gradeSelectElement) {
-        gradeSelectElement.addEventListener('change', function() {
-            const selectedGradeId = this.value;
-            const subjectSelect = document.getElementById('subjectSelect');
-            if (subjectSelect) {
-                // Clear existing options
-                subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
-                if (selectedGradeId !== "") {
-                    // Fetch subjects for the selected grade
-                    '/api/subjects')
-                        .then(response => response.json())
-                        .then(data => {
-                            const filteredSubjects = data.filter(subject => subject.grade_id.toString() === selectedGradeId);
-                            filteredSubjects.forEach(subject => {
-                                const option = document.createElement('option');
-                                option.value = subject.subject_id;
-                                option.textContent = subject.name;
-                                subjectSelect.appendChild(option);
-                            });
-                        })
-                        .catch(error => {
-                            console.error('خطأ في تحميل subjects.json:', error);
+const gradeSelectElement = document.getElementById('gradeSelect');
+if (gradeSelectElement) {
+    gradeSelectElement.addEventListener('change', function() {
+        const selectedGradeId = this.value;
+        const subjectSelect = document.getElementById('subjectSelect');
+        if (subjectSelect) {
+            // Clear existing options
+            subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
+            if (selectedGradeId !== "") {
+                // Fetch subjects for the selected grade
+                fetch('/api/subjects')
+                    .then(response => response.json())
+                    .then(data => {
+                        const filteredSubjects = data.filter(subject => subject.grade_id.toString() === selectedGradeId);
+                        filteredSubjects.forEach(subject => {
+                            const option = document.createElement('option');
+                            option.value = subject.subject_id;
+                            option.textContent = subject.name;
+                            subjectSelect.appendChild(option);
                         });
-                }
+                    })
+                    .catch(error => {
+                        console.error('خطأ في تحميل subjects.json:', error);
+                    });
             }
-        });
-    }
+        }
+    });
+}
+
 
    
         
