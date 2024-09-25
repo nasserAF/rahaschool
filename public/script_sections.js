@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function displayAllSections() {
-    fetch('/rahaschool/grades_sections.json') // تأكد من مسار الملف الصحيح
+    fetch('/rahaschool/grades_sections.json') // تأكد من أن المسار صحيح
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('sectionsContainer');
@@ -34,18 +34,17 @@ function displayAllSections() {
             
             // إنشاء جسم الجدول
             const tbody = document.createElement('tbody');
-            console.log("-----------  data: ",data)
-            data.grades.forEach(grade => {
+            data.forEach(grade => { // تعديل هنا للتعامل مع المصفوفة مباشرة
                 grade.sections.forEach(section => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${grade.grade_name}</td>
                         <td>${section.section_name}</td>
-                        <td>${grade.periods_per_day.الأحد}</td>
-                        <td>${grade.periods_per_day.الإثنين}</td>
-                        <td>${grade.periods_per_day.الثلاثاء}</td>
-                        <td>${grade.periods_per_day.الأربعاء}</td>
-                        <td>${grade.periods_per_day.الخميس}</td>
+                        <td>${grade.periods_per_day["الأحد"]}</td>
+                        <td>${grade.periods_per_day["الإثنين"]}</td>
+                        <td>${grade.periods_per_day["الثلاثاء"]}</td>
+                        <td>${grade.periods_per_day["الأربعاء"]}</td>
+                        <td>${grade.periods_per_day["الخميس"]}</td>
                     `;
                     tbody.appendChild(tr);
                 });
