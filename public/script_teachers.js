@@ -34,7 +34,7 @@ function initializePage() {
 
     function loadData() {
         // Load Config.json
-        fetch('/config.json')
+        fetch('/rahaschool/config.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
