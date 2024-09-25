@@ -34,6 +34,7 @@ function displayAllSections() {
             
             // إنشاء جسم الجدول
             const tbody = document.createElement('tbody');
+            console.log("----- data: ",data);
             data.forEach(grade => { // تعديل هنا للتعامل مع المصفوفة مباشرة
                 grade.sections.forEach(section => {
                     const tr = document.createElement('tr');
