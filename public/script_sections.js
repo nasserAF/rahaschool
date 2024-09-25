@@ -40,11 +40,11 @@ function displayAllSections() {
                     tr.innerHTML = `
                         <td>${grade.grade_name}</td>
                         <td>${section.section_name}</td>
-                        <td>${grade.periods_per_day.Sunday}</td>
-                        <td>${grade.periods_per_day.Monday}</td>
-                        <td>${grade.periods_per_day.Tuesday}</td>
-                        <td>${grade.periods_per_day.Wednesday}</td>
-                        <td>${grade.periods_per_day.Thursday}</td>
+                        <td>${grade.periods_per_day.الأحد}</td>
+                        <td>${grade.periods_per_day.الإثنين}</td>
+                        <td>${grade.periods_per_day.الثلاثاء}</td>
+                        <td>${grade.periods_per_day.الأربعاء}</td>
+                        <td>${grade.periods_per_day.الخميس}</td>
                     `;
                     tbody.appendChild(tr);
                 });
