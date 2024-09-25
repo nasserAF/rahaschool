@@ -73,7 +73,7 @@ function initializePage() {
         tableBody.innerHTML = '';
     
         // جلب بيانات المعلمات من الخادم
-        fetch('/rahaschool/teachers.json')
+        fetch('https://nasseraf.github.io/rahaschool/teachers.json')
             .then(response => response.json())
             .then(teachersData => {
                 // جلب بيانات المواد من الخادم
