@@ -73,11 +73,11 @@ function initializePage() {
         tableBody.innerHTML = '';
     
         // جلب بيانات المعلمات من الخادم
-        fetch('/teachers.json')
+        fetch('/rahaschool/teachers.json')
             .then(response => response.json())
             .then(teachersData => {
                 // جلب بيانات المواد من الخادم
-                fetch('/subjects.json')
+                fetch('/rahaschool/subjects.json')
                     .then(response => response.json())
                     .then(subjects => {
                         // تحديث subjectsMap العالمي
