@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function loadNavigationBar() {
-    fetch('navigationbar.htm')
+    fetch('public/navigationbar.html') // Updated to relative path
         .then(response => response.text())
         .then(data => {
             const navbarPlaceholder = document.getElementById('navbar-placeholder');
@@ -16,7 +16,7 @@ function loadNavigationBar() {
             }
         })
         .catch(error => {
-            console.error('خطأ في تحميل navigationbar.htm:', error);
+            console.error('خطأ في تحميل navigationbar.html:', error);
         });
 }
 
@@ -34,10 +34,10 @@ function initializePage() {
 
     function loadData() {   
         // Load Config.json
-        fetch('https://nasseraf.github.io/rahaschool/config.json')
+        fetch('public/config.json') // Updated to relative path
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`); // Added backticks
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 return response.json();
             })
@@ -52,9 +52,14 @@ function initializePage() {
             });
     }
 
-    /*function loadTeachers() {
-        fetch('/api/teachers')
-            .then(response => response.json())
+    function loadTeachers() {
+        fetch('public/teachers.json') // Updated to relative path
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 teachers = data;
                 displayTeachers();
@@ -62,7 +67,7 @@ function initializePage() {
             .catch(error => {
                 console.error('خطأ في تحميل teachers.json:', error);
             });
-    }*/
+    }
 
     function displayTeachers() {
         const tableBody = document.querySelector('#teachersTable tbody');
@@ -72,79 +77,76 @@ function initializePage() {
         }
         tableBody.innerHTML = '';
     
-        // جلب بيانات المعلمات من الخادم
-        fetch('https://nasseraf.github.io/rahaschool/teachers.json')
-            .then(response => response.json())
-            .then(teachersData => {
-                // جلب بيانات المواد من الخادم
-                fetch('https://nasseraf.github.io/rahaschool/subjects.json')
-                    .then(response => response.json())
-                    .then(subjects => {
-                        // تحديث subjectsMap العالمي
-                        subjectsMap = {};
-                        subjects.forEach(subject => {
-                            subjectsMap[subject.subject_id] = {
-                                name: subject.name,
-                                grade: subject.grade_id
-                            };
-                        });
+        // جلب بيانات المواد من الخادم
+        fetch('public/subjects.json') // Updated to relative path
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(subjects => {
+                // تحديث subjectsMap العالمي
+                subjectsMap = {};
+                subjects.forEach(subject => {
+                    subjectsMap[subject.subject_id] = {
+                        name: subject.name,
+                        grade: subject.grade_id
+                    };
+                });
 
-                        // عرض المعلمات في الجدول
-                        teachersData.forEach(teacher => {
-                            const tr = document.createElement('tr');
+                // عرض المعلمات في الجدول
+                teachers.forEach(teacher => {
+                    const tr = document.createElement('tr');
 
-                            // إنشاء خلية لرقم المعلمة واسم المعلمة
-                            tr.innerHTML = `
-                                <td>${teacher.teacher_id}</td>
-                                <td>${teacher.name}</td>
-                            `; // Added backticks
+                    // إنشاء خلية لرقم المعلمة واسم المعلمة
+                    tr.innerHTML = `
+                        <td>${teacher.teacher_id}</td>
+                        <td>${teacher.name}</td>
+                    `;
 
-                            // عرض المواد بالصيغة المطلوبة "اسم المادة / الصف"
-                            const subjectInfo = teacher.subjects.map(subjectId => {
-                                const subject = subjectsMap[subjectId];
-                                if (subject) {
-                                    return `${subject.name} / ${subject.grade}`; // Added backticks
-                                } else {
-                                    console.warn(`Subject with ID ${subjectId} not found`);
-                                    return null;
-                                }
-                            }).filter(info => info !== null); // فلترة المواد التي لم يتم العثور عليها
+                    // عرض المواد بالصيغة المطلوبة "اسم المادة / الصف"
+                    const subjectInfo = teacher.subjects.map(subjectId => {
+                        const subject = subjectsMap[subjectId];
+                        if (subject) {
+                            return `${subject.name} / ${subject.grade}`;
+                        } else {
+                            console.warn(`Subject with ID ${subjectId} not found`);
+                            return null;
+                        }
+                    }).filter(info => info !== null); // فلترة المواد التي لم يتم العثور عليها
 
-                            // إنشاء خلية لعرض المواد
-                            const subjectsCell = document.createElement('td');
-                            subjectsCell.textContent = subjectInfo.join(', ');
-                            tr.appendChild(subjectsCell);
+                    // إنشاء خلية لعرض المواد
+                    const subjectsCell = document.createElement('td');
+                    subjectsCell.textContent = subjectInfo.join(', ');
+                    tr.appendChild(subjectsCell);
 
-                            // إنشاء خلية لعرض الصفوف بدون تكرار
-                            const uniqueGrades = [...new Set(subjectInfo.map(info => {
-                                const parts = info.split('/');
-                                return parts.length > 1 ? parts[1].trim() : '';
-                            }).filter(grade => grade !== ''))];
-                            const uniqueGradesCell = document.createElement('td');
-                            uniqueGradesCell.textContent = uniqueGrades.join(', ');
-                            tr.appendChild(uniqueGradesCell);
+                    // إنشاء خلية لعرض الصفوف بدون تكرار
+                    const uniqueGrades = [...new Set(subjectInfo.map(info => {
+                        const parts = info.split('/');
+                        return parts.length > 1 ? parts[1].trim() : '';
+                    }).filter(grade => grade !== ''))];
+                    const uniqueGradesCell = document.createElement('td');
+                    uniqueGradesCell.textContent = uniqueGrades.join(', ');
+                    tr.appendChild(uniqueGradesCell);
 
-                            // إنشاء عمود الإجراءات
-                            const actionsCell = document.createElement('td');
-                            actionsCell.innerHTML = `
-                                <button class="btn btn-primary edit-btn" data-id="${teacher.teacher_id}">تعديل</button>
-                                <button class="btn btn-danger delete-btn" data-id="${teacher.teacher_id}">حذف</button>
-                            `; // Added backticks
-                            tr.appendChild(actionsCell);
+                    // إنشاء عمود الإجراءات
+                    const actionsCell = document.createElement('td');
+                    actionsCell.innerHTML = `
+                        <button class="btn btn-primary edit-btn" data-id="${teacher.teacher_id}">تعديل</button>
+                        <button class="btn btn-danger delete-btn" data-id="${teacher.teacher_id}">حذف</button>
+                    `;
+                    tr.appendChild(actionsCell);
 
-                            // إضافة الصف إلى الجدول
-                            tableBody.appendChild(tr);
-                        });
+                    // إضافة الصف إلى الجدول
+                    tableBody.appendChild(tr);
+                });
 
-                        // إضافة مستمعي الأحداث بعد عرض المعلمات
-                        addEventListenersToActions();
-                    })
-                    .catch(error => {
-                        console.error('Error fetching subjects:', error);
-                    });
+                // إضافة مستمعي الأحداث بعد عرض المعلمات
+                addEventListenersToActions();
             })
             .catch(error => {
-                console.error('Error fetching teachers:', error);
+                console.error('خطأ في تحميل subjects.json:', error);
             });
     }
 
@@ -206,8 +208,13 @@ function initializePage() {
                 subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
                 if (selectedGradeId !== "") {
                     // Fetch subjects for the selected grade
-                    fetch('/api/subjects')
-                        .then(response => response.json())
+                    fetch('public/subjects.json') // Updated to relative path
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
                         .then(data => {
                             const filteredSubjects = data.filter(subject => subject.grade_id.toString() === selectedGradeId);
                             filteredSubjects.forEach(subject => {
@@ -240,7 +247,7 @@ function initializePage() {
                 subjectDiv.setAttribute('data-subject-id', subjectId);
 
                 // محتوى الزر يتضمن اسم المادة والصف
-                subjectDiv.textContent = `${subject.name} / ${subject.grade}`; // Added backticks
+                subjectDiv.textContent = `${subject.name} / ${subject.grade}`;
 
                 // إنشاء علامة الحذف
                 const removeBtn = document.createElement('button');
@@ -271,7 +278,7 @@ function initializePage() {
         }
     }
 
-    // Handle Edit Buttons (Moved inside displayTeachers to ensure teachers are loaded)
+    // Handle Edit Buttons
     function addEventListenersToActions() {
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
@@ -287,6 +294,9 @@ function initializePage() {
                     displaySelectedSubjects(selectedSubjects); // عرضها في الأسفل
 
                     // باقي الإجراءات الخاصة بالتعديل
+                    // Note: Since write operations are not possible on GitHub Pages,
+                    // you might want to disable editing functionalities or implement them using localStorage.
+                    alert('تعديل المعلمة غير مدعوم على هذا النظام.');
                 }
             });
         });
@@ -330,7 +340,11 @@ function initializePage() {
                 };
 
                 // حفظ البيانات إلى الخادم
-                saveTeacher(teacherData);
+                // Since GitHub Pages does not support server-side operations,
+                // this functionality is disabled.
+                alert('حفظ بيانات المعلمة غير مدعوم على هذا النظام.');
+                // Uncomment the following line if you have a backend server to handle save operations.
+                // saveTeacher(teacherData);
             }
         });
     } else {
@@ -339,10 +353,13 @@ function initializePage() {
 
     // Save Teacher Data to Server
     function saveTeacher(teacherData) {
-        const url = editingTeacherId ? `/api/teachers/${editingTeacherId}` : '/api/teachers'; // Added backticks
+        // Since GitHub Pages does not support server-side operations,
+        // this function will not work. You need a separate backend server.
+        /*
+        const url = editingTeacherId ? `/api/teachers/${editingTeacherId}` : '/api/teachers';
         const method = editingTeacherId ? 'PUT' : 'POST';
 
-        fetch(url, { // Added fetch(
+        fetch(url, {
             method: method,
             headers: {
                 'Content-Type': 'application/json'
@@ -362,6 +379,8 @@ function initializePage() {
         .catch(error => {
             console.error('خطأ في حفظ بيانات المعلمة:', error);
         });
+        */
+        console.warn('حفظ بيانات المعلمة غير مدعوم على هذا النظام.');
     }
 
     // Reset Form
@@ -433,7 +452,11 @@ function initializePage() {
     // Delete Teacher
     function deleteTeacher(teacherId) {
         if (confirm('هل أنت متأكد من حذف هذه المعلمة؟')) {
-            fetch(`/api/teachers/${teacherId}`, { // Added fetch( and backticks
+            // Since GitHub Pages does not support server-side operations,
+            // this functionality is disabled.
+            alert('حذف المعلمة غير مدعوم على هذا النظام.');
+            /*
+            fetch(`/api/teachers/${teacherId}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
@@ -448,14 +471,23 @@ function initializePage() {
                 .catch(error => {
                     console.error('خطأ في حذف المعلمة:', error);
                 });
+            */
         }
     }
 
     // Get Subject Name by ID
     function getSubjectNameById(subjectId) {
         // Fetch subjects from server
-        return fetch('/api/subjects') // Added fetch( and return
-            .then(response => response.json())
+        // Since GitHub Pages does not support server-side operations,
+        // this functionality is disabled.
+        /*
+        return fetch('public/subjects.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 const subject = data.find(s => s.subject_id === subjectId);
                 return subject ? subject.name : null;
@@ -464,6 +496,9 @@ function initializePage() {
                 console.error('خطأ في جلب بيانات المواد:', error);
                 return null;
             });
+        */
+        console.warn('جلب بيانات المادة غير مدعوم على هذا النظام.');
+        return null;
     }
 
     // Get Grade ID by Subject IDs
