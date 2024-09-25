@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function loadNavigationBar() {
-    fetch('navigationbar.htm')
+    fetch('/rahaschool/public/navigationbar.htm')
         .then(response => response.text())
         .then(data => {
             const navbarPlaceholder = document.getElementById('navbar-placeholder');
@@ -32,9 +32,9 @@ function initializePage() {
     // Load Data
     loadData();
 
-    function loadData() {
+    function loadData() {   
         // Load Config.json
-        fetch('/rahaschool/config.json')
+        fetch('https://nasseraf.github.io/rahaschool/config.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -53,7 +53,7 @@ function initializePage() {
     }
 
     function loadTeachers() {
-        fetch('/rahaschool/teachers')
+        fetch('/api/teachers')
             .then(response => response.json())
             .then(data => {
                 teachers = data;
@@ -77,7 +77,7 @@ function initializePage() {
             .then(response => response.json())
             .then(teachersData => {
                 // جلب بيانات المواد من الخادم
-                fetch('/rahaschool/subjects.json')
+                fetch('https://nasseraf.github.io/rahaschool/subjects.json')
                     .then(response => response.json())
                     .then(subjects => {
                         // تحديث subjectsMap العالمي
@@ -206,7 +206,7 @@ if (addSubjectBtn) {
                 subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
                 if (selectedGradeId !== "") {
                     // Fetch subjects for the selected grade
-                    fetch('/api/subjects')
+                    '/api/subjects')
                         .then(response => response.json())
                         .then(data => {
                             const filteredSubjects = data.filter(subject => subject.grade_id.toString() === selectedGradeId);
@@ -334,7 +334,7 @@ if (teacherForm) {
         const url = editingTeacherId ? `/api/teachers/${editingTeacherId}` : '/api/teachers';
         const method = editingTeacherId ? 'PUT' : 'POST';
     
-        fetch(url, {
+        url, {
             method: method,
             headers: {
                 'Content-Type': 'application/json'
@@ -425,7 +425,7 @@ if (teacherForm) {
     // Delete Teacher
     function deleteTeacher(teacherId) {
         if (confirm('هل أنت متأكد من حذف هذه المعلمة؟')) {
-            fetch(`/api/teachers/${teacherId}`, {
+            `/api/teachers/${teacherId}`, {
                 method: 'DELETE'
             })
                 .then(response => response.json())
@@ -446,7 +446,7 @@ if (teacherForm) {
     // Get Subject Name by ID
     function getSubjectNameById(subjectId) {
         // Fetch subjects from server
-        fetch('/api/subjects')
+        '/api/subjects')
             .then(response => response.json())
             .then(data => {
                 const subject = data.find(s => s.subject_id === subjectId);
