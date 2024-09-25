@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function loadNavigationBar() {
-    fetch('navigationbar.htm')
+    fetch('/rahaschool/public/navigationbar.html')
         .then(response => response.text())
         .then(data => {
             const navbarPlaceholder = document.getElementById('navbar-placeholder');
