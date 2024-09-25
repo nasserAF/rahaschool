@@ -34,7 +34,7 @@ function initializePage() {
 
     function loadData() {   
         // Load Config.json
-        fetch('config.json') // Updated to relative path
+        fetch('/rahaschool/config.json') // Updated to relative path
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -53,7 +53,7 @@ function initializePage() {
     }
 
     function loadTeachers() {
-        fetch('teachers.json') // Updated to relative path
+        fetch('/rahaschool/teachers.json') // Updated to relative path
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -78,7 +78,7 @@ function initializePage() {
         tableBody.innerHTML = '';
     
         // جلب بيانات المواد من الخادم
-        fetch('subjects.json') // Updated to relative path
+        fetch('/rahaschool/subjects.json') // Updated to relative path
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -208,7 +208,7 @@ function initializePage() {
                 subjectSelect.innerHTML = '<option value="">-- اختر المادة --</option>';
                 if (selectedGradeId !== "") {
                     // Fetch subjects for the selected grade
-                    fetch('subjects.json') // Updated to relative path
+                    fetch('/rahaschool/subjects.json') // Updated to relative path
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error(`HTTP error! Status: ${response.status}`);
