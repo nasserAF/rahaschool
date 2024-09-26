@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم أولياء الأمور - مدرسة الراحة النموذجية</title>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- FullCalendar CSS -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.css" rel="stylesheet"> -->
+    <!-- FullCalendar JS -->
+    <!-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script> -->
+
+    <!-- FullCalendar CSS -->
+    <link href="fullCalendar/main.css" rel="stylesheet">
+    <!-- FullCalendar JS -->
+    <script src='fullCalendar/main.js'></script>
+
+    <style>
+        /* الألوان الأساسية */
+        :root {
+            --primary-color: #2c3e50; /* أزرق داكن */
+            --secondary-color: #34495e; /* أزرق متوسط */
+            --accent-color: #2980b9; /* أزرق فاتح */
+            --background-color: #ffffff; /* أبيض */
+            --text-color: #2c3e50; /* لون النص الأساسي */
+            --card-background: #ffffff; /* أبيض */
+            --header-height: 70px;
+            --sidebar-width: 250px;
+            --rightbar-width: 300px;
+            --modal-background: rgba(0, 0, 0, 0.5);
+            --modal-content-background: #ffffff;
+            --modal-text-color: #2c3e50;
+        }
+
+        /* إعدادات الجسم */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* شريط التنقل العلوي */
+        .top-nav {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-nav .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .top-nav .search-bar {
+            position: relative;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .top-nav .search-bar input {
+            width: 100%;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 1em;
+        }
+
+        .top-nav .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-nav .notifications, .top-nav .profile {
+            position: relative;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .top-nav .notifications .badge, .top-nav .profile .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7em;
+        }
+
+        .top-nav .welcome-message {
+            margin-left: 20px;
+            font-size: 0.9em;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        /* محتوى الصفحة الرئيسي */
+        .main-container {
+            display: flex;
+            margin-top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            overflow: hidden;
+        }
+
+        /* الشريط الجانبي الأيسر */
+        .sidebar-left {
+            width: var(--sidebar-width);
+            background-color: var(--background-color); /* أبيض */
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            color: var(--text-color); /* لون نص داكن */
+        }
+
+        .sidebar-left .children-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-left .children-list li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar-left .children-list li:hover, .sidebar-left .children-list li.active {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+        }
+
+        .sidebar-left .children-list li img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .sidebar-left .nav-menu {
+            margin-top: 30px;
+        }
+
+        .sidebar-left .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-left .nav-menu li {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sidebar-left .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 12px 10px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s, padding-right 0.3s;
+        }
+
+        .sidebar-left .nav-menu a i {
+            margin-left: 10px;
+        }
+
+        .sidebar-left .nav-menu a:hover {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            padding-right: 20px;
+        }
+
+        .sidebar-left .nav-menu .dropdown-content {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .sidebar-left .nav-menu .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: var(--background-color);
+        }
+
+        .main-content .student-info {
+            display: flex;
+            align-items: center;
+            background-color: var(--card-background);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .main-content .student-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: 20px;
+        }
+
+        .main-content .student-info div {
+            flex-grow: 1;
+        }
+
+        .main-content .student-info h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: var(--primary-color);
+        }
+
+        .main-content .student-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .main-content .student-info .summary {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .main-content .student-info .summary span {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .main-content .card {
+            background-color: var(--card-background);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .main-content .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .main-content .card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* جدول الفصول الدراسية */
+        .main-content table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .main-content th, .main-content td {
+            text-align: right;
+            padding: 12px;
+            background-color: var(--card-background);
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .main-content th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .main-content tr:hover td {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        /* الأزرار */
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn i {
+            margin-left: 5px;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* شريط التبديل بين العروض */
+        .view-switcher {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .view-switcher .btn.active {
+            background-color: var(--secondary-color);
+        }
+
+        /* الشريط الجانبي الأيمن */
+        .sidebar-right {
+            width: var(--rightbar-width);
+            background-color: var(--background-color); /* أبيض */
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            color: var(--text-color); /* لون نص داكن */
+        }
+
+        .sidebar-right .teacher-messages, .sidebar-right .calendar-widget {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-right .teacher-messages h3, .sidebar-right .calendar-widget h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .sidebar-right .teacher-message {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .sidebar-right .teacher-message:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .sidebar-right .teacher-message img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .sidebar-right .message-preview {
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 10px;
+        }
+
+        .sidebar-right .message-preview strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        /* التقويم */
+        .sidebar-right .calendar-widget {
+            background-color: #ffffff;
+            color: #2c3e50;
+            padding: 15px;
+            border-radius: 10px;
+            /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
+        }
+
+        /* المودال */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 2000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: var(--modal-background); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: var(--modal-content-background);
+            margin: 10% auto; /* 10% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            color: var(--modal-text-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* الاستجابة للأجهزة */
+        @media (max-width: 1200px) {
+            .sidebar-right {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-left {
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .top-nav .search-bar {
+                display: none;
+            }
+
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar-right {
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <div class="top-nav">
+        <div class="logo">مدرسة الراحة النموذجية</div>
+        <div class="search-bar">
+            <!-- <input type="text" placeholder="بحث..."> -->
+        </div>
+        <div class="welcome-message">
+            <span>مرحباً، ناصر أبو فاره</span>
+            <span>آخر تسجيل دخول: 2024-04-25 14:30</span>
+        </div>
+        <div class="icons">
+            <div class="notifications">
+                <i class="fas fa-bell"></i>
+                <span class="badge">3</span>
+            </div>
+            <div class="profile">
+                <i class="fas fa-user-circle"></i>
+                <span class="badge">1</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- حاوية المحتوى الرئيسي -->
+    <div class="main-container">
+        <!-- الشريط الجانبي الأيسر -->
+        <div class="sidebar-left">
+            <!-- قائمة الأطفال -->
+            <ul class="children-list">
+                <li class="active">
+                    <img src="images/fatimah.webp" alt="صورة فاطمة">
+                    <span>فاطمة أحمد</span>
+                </li>
+                <li>
+                    <img src="images/ali.webp" alt="صورة علي">
+                    <span>علي أحمد</span>
+                </li>
+            </ul>
+
+            <!-- قائمة التنقل الرئيسية -->
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-user"></i> ولي الأمر <i class="fas fa-chevron-down" style="margin-left:auto;"></i></a>
+                        <ul class="dropdown-content">
+                            <li><a href="#"><i class="fas fa-dollar-sign"></i> الرسوم المدرسية</a></li>
+                            <li><a href="#"><i class="fas fa-file-alt"></i> استمارات إلكترونية</a></li>
+                            <li><a href="#"><i class="fas fa-book"></i> السيرة والسلوك</a></li>
+                            <li><a href="#"><i class="fas fa-graduation-cap"></i> الأداء الأكاديمي</a></li>
+                            <li><a href="#"><i class="fas fa-calendar-check"></i> الحضور والغياب</a></li>
+                            <li><a href="#"><i class="fas fa-table"></i> الجدول الأسبوعي</a></li>
+                            <li><a href="#"><i class="fas fa-tasks"></i> الواجبات المنزلية</a></li>
+                            <li><a href="#"><i class="fas fa-clipboard"></i> امتحانات الطالب</a></li>
+                            <li><a href="#"><i class="fas fa-running"></i> أنشطة الطالب</a></li>
+                            <li><a href="#"><i class="fas fa-bullhorn"></i> الإعلانات</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- المحتوى الرئيسي -->
+        <div class="main-content">
+            <!-- معلومات الطالب -->
+            <div class="student-info">
+                <img src="images/fatimah.webp" alt="صورة فاطمة">
+                <div>
+                    <h2>فاطمة أحمد</h2>
+                    <p>الصف: الحادي عشر - الشعبة: أ</p>
+                    <div class="summary">
+                        <span>مستحق اليوم: 0</span>
+                        <span>قريباً: 2</span>
+                        <span>متأخر: 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الفصول الدراسية -->
+            <div class="card">
+                <h3>الفصول الدراسية</h3>
+                <table>
+                    <tr>
+                        <th>المادة</th>
+                        <th>المعلم</th>
+                        <th>الحصة</th>
+                        <th>الواجبات</th>
+                    </tr>
+                    <tr>
+                        <td>اللغة العربية</td>
+                        <td>أ. محمد علي</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>الرياضيات المتقدمة</td>
+                        <td>أ. سارة حسن</td>
+                        <td>2</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+            </div>
+
+        
+            <!-- الواجبات -->
+            <div class="card">
+                <h3>الواجبات</h3>
+                <button class="btn"><i class="fas fa-arrow-up"></i> قادمة</button>
+                <button class="btn"><i class="fas fa-arrow-down"></i> مقدمة</button>
+                <button class="btn"><i class="fas fa-times"></i> مفقودة</button>
+            </div>
+
+            <!-- إمكانية التبديل بين العروض -->
+            <div class="card">
+                <h3>العروض</h3>
+                <div class="view-switcher">
+                    <button class="btn active" data-view="posts"><i class="fas fa-newspaper"></i> المنشورات</button>
+                    <button class="btn" data-view="messages"><i class="fas fa-envelope"></i> الرسائل</button>
+                    <button class="btn" data-view="classes"><i class="fas fa-chalkboard-teacher"></i> الفصول</button>
+                    <button class="btn" data-view="resources"><i class="fas fa-book-open"></i> الموارد</button>
+                </div>
+                <div class="view-content">
+                    <!-- محتوى العروض سيتم إضافته هنا -->
+                    <p>تم اختيار العرض: المنشورات</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريط الجانبي الأيمن -->
+        <div class="sidebar-right">
+            <!-- رسائل المعلمين -->
+            <div class="teacher-messages">
+                <h3>رسائل المعلمين</h3>
+                <div class="teacher-message">
+                    <img src="images/teacherF.webp" alt="صورة المعلمة سارة">
+                    <div class="message-preview">
+                        <strong>أ. سارة حسن</strong>
+                        <p>نود إعلامكم بأن الاختبار القصير في مادة الرياضيات سيكون...</p>
+                    </div>
+                </div>
+                <div class="teacher-message">
+                    <img src="images/teacherM.webp" alt="صورة المعلم محمد">
+                    <div class="message-preview">
+                        <strong>أ. محمد علي</strong>
+                        <p>أرجو التأكد من إكمال الواجب المنزلي لهذا الأسبوع...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التقويم -->
+            <div class="calendar-widget">
+                <h3>التقويم</h3>
+                <div id="calendar"></div>
+            </div>
+        </div>
+
+        <!-- المودال -->
+        <div id="eventModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">عنوان الحدث</h2>
+                <p id="modalDate">تاريخ الحدث</p>
+                <p id="modalDescription">وصف الحدث</p>
+                <p id="modalLocation">موقع الحدث</p>
+            </div>
+        </div>
+
+        <!-- سكريبتات JavaScript -->
+        <script>
+            $(document).ready(function() {
+                // قائمة التنقل المنسدلة
+                $('.dropdown-toggle').click(function(e) {
+                    e.preventDefault();
+                    $(this).parent().toggleClass('active');
+                });
+
+                // اختيار الطفل
+                $('.children-list li').click(function() {
+                    $('.children-list li').removeClass('active');
+                    $(this).addClass('active');
+                    // تحديث معلومات الطالب هنا
+                    alert('تم اختيار الطالب: ' + $(this).find('span').text());
+                });
+
+                // رسائل المعلمين
+                $('.teacher-message').click(function() {
+                    alert('رسالة من: ' + $(this).find('strong').text());
+                });
+
+                // تبديل العروض
+                $('.view-switcher .btn').click(function() {
+                    $('.view-switcher .btn').removeClass('active');
+                    $(this).addClass('active');
+                    var view = $(this).data('view');
+                    // تحديث محتوى العرض هنا بناءً على 'view'
+                    var content = '';
+                    switch(view) {
+                        case 'posts':
+                            content = '<p>محتوى المنشورات هنا.</p>';
+                            break;
+                        case 'messages':
+                            content = '<p>محتوى الرسائل هنا.</p>';
+                            break;
+                        case 'classes':
+                            content = '<p>محتوى الفصول هنا.</p>';
+                            break;
+                        case 'resources':
+                            content = '<p>محتوى الموارد هنا.</p>';
+                            break;
+                        default:
+                            content = '<p>تم اختيار العرض: ' + view + '</p>';
+                    }
+                    $('.view-content').html(content);
+                });
+
+                // إشعارات الأزرار
+                $('.notifications, .profile').click(function() {
+                    alert('تم النقر على: ' + ($(this).hasClass('notifications') ? 'الإشعارات' : 'الملف الشخصي'));
+                });
+
+                // تهيئة التقويم باستخدام FullCalendar
+                var calendarEl = document.getElementById('calendar');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'ar',
+                    direction: 'rtl',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    events: [
+                        {
+                            title: 'بدء الفصل الدراسي الأول',
+                            start: '2024-09-01',
+                            description: 'بداية العام الدراسي الجديد مع افتتاح المدرسة واستقبال الطلاب.',
+                            location: 'ساحة المدرسة الرئيسية',
+                            color: '#2c3e50'
+                        },
+                        {
+                            title: 'عطلة نهاية الأسبوع',
+                            start: '2024-10-10',
+                            end: '2024-10-12',
+                            description: 'عطلة نهاية الأسبوع تشمل السبت والأحد.',
+                            location: 'غير محدد',
+                            color: '#2980b9'
+                        },
+                        {
+                            title: 'امتحان منتصف الفصل الدراسي الأول',
+                            start: '2024-11-15',
+                            description: 'إجراء الامتحانات النصفي لجميع المواد الدراسية.',
+                            location: 'قاعات الامتحانات',
+                            color: '#27ae60'
+                        },
+                        {
+                            title: 'اجتماع أولياء الأمور',
+                            start: '2024-12-05',
+                            description: 'لقاء بين أولياء الأمور والمعلمين لمناقشة تقدم الطلاب وأي استفسارات.',
+                            location: 'قاعة الاجتماعات',
+                            color: '#8e44ad'
+                        },
+                        {
+                            title: 'عيد الميلاد المجيد',
+                            start: '2024-12-25',
+                            description: 'احتفالات عيد الميلاد المجيد.',
+                            location: 'مدرسة الراحة النموذجية',
+                            color: '#e74c3c'
+                        },
+                        {
+                            title: 'امتحان نهاية الفصل الدراسي الأول',
+                            start: '2025-01-20',
+                            description: 'إجراء امتحانات نهاية الفصل الدراسي الأول.',
+                            location: 'قاعات الامتحانات',
+                            color: '#f39c12'
+                        },
+                        {
+                            title: 'عطلة الشتاء',
+                            start: '2025-02-15',
+                            end: '2025-02-20',
+                            description: 'عطلة الشتاء تشمل من 15 إلى 20 فبراير.',
+                            location: 'غير محدد',
+                            color: '#16a085'
+                        },
+                        {
+                            title: 'أنشطة رياضية',
+                            start: '2025-03-10',
+                            description: 'فعاليات رياضية تشمل مسابقات جماعية وفردية بين الصفوف.',
+                            location: 'ملعب المدرسة',
+                            color: '#d35400'
+                        },
+                        {
+                            title: 'اجتماع المعلمين',
+                            start: '2025-04-05',
+                            description: 'اجتماع دورى للمعلمين لمناقشة استراتيجيات التدريس وتحسين الأداء.',
+                            location: 'قاعة الاجتماعات',
+                            color: '#c0392b'
+                        },
+                        {
+                            title: 'عطلة الربيع',
+                            start: '2025-04-25',
+                            end: '2025-04-30',
+                            description: 'عطلة الربيع تشمل من 25 إلى 30 أبريل.',
+                            location: 'غير محدد',
+                            color: '#2980b9'
+                        },
+                        // المزيد من الأحداث لإضافة تفاصيل أكثر
+                        {
+                            title: 'ورشة عمل تعليمية',
+                            start: '2024-11-20',
+                            description: 'ورشة عمل لتعزيز مهارات التدريس والتعلم الإلكتروني للمعلمين.',
+                            location: 'قاعة ورش العمل',
+                            color: '#8e44ad'
+                        },
+                        {
+                            title: 'مسابقة العلوم',
+                            start: '2024-12-15',
+                            description: 'مسابقة علمية لجميع طلاب المدارس الثانوية.',
+                            location: 'مسرح المدرسة',
+                            color: '#27ae60'
+                        },
+                        {
+                            title: 'رحلة مدرسية ميدانية',
+                            start: '2025-01-10',
+                            end: '2025-01-12',
+                            description: 'زيارة ميدانية لتعزيز التعلم العملي والتفاعل الاجتماعي بين الطلاب.',
+                            location: 'متحف العلوم',
+                            color: '#d35400'
+                        },
+                        {
+                            title: 'حفل تكريم الطلاب المتفوقين',
+                            start: '2025-03-25',
+                            description: 'توزيع جوائز وشهادات تقدير للطلاب المتفوقين في مختلف المجالات.',
+                            location: 'قاعة الاحتفالات',
+                            color: '#f1c40f'
+                        },
+                        {
+                            title: 'تسجيل الطلاب للسنة القادمة',
+                            start: '2025-04-10',
+                            description: 'بدء عملية تسجيل الطلاب للسنة الدراسية القادمة.',
+                            location: 'مكتب التسجيل',
+                            color: '#2980b9'
+                        }
+                    ],
+                    eventClick: function(info) {
+                        // منع الانتقال إلى الرابط الافتراضي
+                        info.jsEvent.preventDefault();
+
+                        // تعيين محتويات المودال بناءً على الحدث
+                        $('#modalTitle').text(info.event.title);
+                        $('#modalDate').text(
+                            info.event.start.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' }) +
+                            (info.event.end ? ' - ' + new Date(info.event.end).toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' }) : '')
+                        );
+                        $('#modalDescription').text(info.event.extendedProps.description);
+                        $('#modalLocation').text(info.event.extendedProps.location);
+
+                        // عرض المودال
+                        $('#eventModal').fadeIn();
+                    }
+                });
+
+                calendar.render();
+
+                // إغلاق المودال عند النقر على زر الإغلاق
+                $('.close').click(function() {
+                    $('#eventModal').fadeOut();
+                });
+
+                // إغلاق المودال عند النقر خارج محتوى المودال
+                $(window).click(function(event) {
+                    if ($(event.target).is('#eventModal')) {
+                        $('#eventModal').fadeOut();
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
