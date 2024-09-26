@@ -14,6 +14,37 @@
     <div id="navbar-placeholder"></div>
 
     <div class="container">
+        <h1>جميع الابناء</h1>
+
+        <!-- عرض قائمة المعلمات -->
+        <h2>قائمة الأبناء</h2>
+        <input type="text" id="searchInput" placeholder="ابحث عن الطالب بالاسم أو الرقم..." class="search-input">
+        <table id="teachersTable" class="table">
+            <thead>
+                <tr>
+                    <th>رقم الطالب</th>
+                    <th>اسم الطالب</th>
+                    <th>الصف</th>
+                     <!-- إضافة عمود الصفوف -->
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody><tr>
+                        <td>st_001</td>
+                        <td>ريان ناصر ابو فاره</td>
+                    <td>الصف التاسع - أ</td><td>
+                        <button class="btn btn-primary edit-btn" data-id="t_001">التفاصيل</button>
+                    </td></tr><tr>
+                        <td>st_002</td>
+                        <td>لمار ناصر ابو فاره</td>
+                    <td>الصف الثامن - ب</td><td>
+                        <button class="btn btn-primary edit-btn" data-id="t_002">التفاصيل</button>
+                        
+                    </td></tr></tbody>
+        </table>
+    </div>
+    
+    <div class="container">
         <h1>رسوم الطالب المدرسية</h1>
         <p>رقم الطالب: <strong>123456</strong></p>
         <p>اسم الطالب: <strong>ريان ناصر أبو فاره</strong></p>
