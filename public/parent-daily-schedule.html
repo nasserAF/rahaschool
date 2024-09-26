@@ -1,0 +1,61 @@
+<html lang="ar" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جداول الحصص الأسبوعية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <script src="script_daily-schedule.js" defer></script>
+</head>
+<body>
+</div>
+<!-- شريط التنقل -->
+<div id="navbar-placeholder"></div>
+
+<div class="container">
+    <!--           قائمة الابناء            -->
+    <div class="container">
+        <h1>جميع الابناء</h1>
+        <!-- عرض قائمة المعلمات -->
+        <h2>قائمة الأبناء</h2>
+        <input type="text" id="searchInput" placeholder="ابحث عن الطالب بالاسم أو الرقم..." class="search-input">
+        <table id="teachersTable" class="table">
+            <thead>
+                <tr>
+                    <th>رقم الطالب</th>
+                    <th>اسم الطالب</th>
+                    <th>الصف</th>
+                    <!-- إضافة عمود الصفوف -->
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>st_001</td>
+                    <td>ريان ناصر ابو فاره</td>
+                    <td>الصف التاسع - أ</td>
+                    <td>
+                        <button class="btn btn-primary edit-btn" data-id="t_001">التفاصيل</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>st_002</td>
+                    <td>لمار ناصر ابو فاره</td>
+                    <td>الصف الثامن - ب</td>
+                    <td>
+                        <button class="btn btn-primary edit-btn" data-id="t_002">التفاصيل</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+     <br>
+    <!--           نهاية قائمة الابناء            -->
+
+
+    <div class="container">
+        <h1>جداول الحصص الأسبوعية</h1>
+        <div id="tables-container">
+            <!-- سيتم توليد الجداول هنا بواسطة جافا سكريبت -->
+        <div class="section"><h2>الصف الأول - الشعبة أ</h2><table class="table"><thead><tr><th>اليوم / الحصة</th><th>الحصة الأولى</th><th>الحصة الثانية</th><th>الحصة الثالثة</th><th>إستراحة</th><th>الحصة الرابعة</th><th>الحصة الخامسة</th><th>الحصة السادسة</th><th>الحصة السابعة</th></tr></thead><tbody><tr><td>الأحد</td><td>---</td><td>دراسات إجتماعية (حنان)</td><td>اللغة العربية (تغريد)</td><td>استراحة</td><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>الإثنين</td><td>---</td><td>---</td><td>---</td><td>استراحة</td><td>---</td><td>اللغة العربية (تغريد)</td><td>---</td><td>---</td></tr><tr><td>الثلاثاء</td><td>اللغة العربية (تغريد)</td><td>---</td><td>دراسات إجتماعية (حنان)</td><td>استراحة</td><td>---</td><td>---</td><td>---</td><td>---</td></tr><tr><td>الأربعاء</td><td>---</td><td>---</td><td>---</td><td>استراحة</td><td>اللغة العربية (تغريد)</td><td>---</td><td>---</td><td>---</td></tr><tr><td>الخميس</td><td>---</td><td>اللغة العربية (تغريد)</td><td>---</td><td>استراحة</td><td>---</td><td>---</td><td>---</td><td>---</td></tr></tbody></table></div></div>
+    </div>
+</body>
+</html>
