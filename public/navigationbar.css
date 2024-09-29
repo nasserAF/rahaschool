@@ -59,6 +59,8 @@ body {
 .nav-links a:hover {
     background:#2c3e50;
     color:#fff;
+    min-width: 190px;
+    width: 200px;
 }
 
 /* Dropdown menu */
@@ -81,8 +83,6 @@ body {
 
 .dropdown:hover .dropdown-content {
     display: block; 
-    min-width: 190px;
-    width: 200px;
 }
 
 /* Mobile menu styles */
