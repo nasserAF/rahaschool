@@ -1,5 +1,16 @@
 /* navigationbar.css */
 
+@font-face {
+  font-family: 'Jazeera Light';
+  src: url('/rahaschool/public/fonts/jazeera-light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Jazeera Light', sans-serif;
+}
+
 /* Navigation Bar Container */
 .navbar {
     background-color: #2c3e50;
