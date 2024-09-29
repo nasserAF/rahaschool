@@ -37,7 +37,7 @@ body {
     gap: 20px;
 }
 
-.navbar .nav-links li a {
+.navbar . li a {
     color: #ecf0f1;
     color: #1a4854;
     text-decoration: none;
@@ -45,42 +45,9 @@ body {
     transition: color 0.3s ease;
 }
 
-
 .dropbtn{
     color: white;
 }
-
-
-
-
-/* Responsive Design */
-/* @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-    }
-
-    .navbar .nav-links.active {
-        display: flex;
-    }
-
-    .navbar .mobile-menu {
-        display: flex;
-    }
-} */
-
-/* General styles for navbar */
-
-
-
-
-
 
 .nav-links a {
     padding: 10px 15px;
@@ -107,13 +74,11 @@ body {
 }
 
 
-
-
-
-
-
 .dropdown:hover .dropdown-content {
     display: block;
+  background:green;
+  
+  
 }
 
 /* Mobile menu styles */
