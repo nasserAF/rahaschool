@@ -1,135 +1,173 @@
-/* Theme Colors */
-:root {
-    --primary-color: #2C3E50;
-    --secondary-color: #18BC9C;
-    --accent-color: #E74C3C;
-    --background-color: #ECF0F1;
-    --text-color: #2C3E50;
-    --light-text: #95A5A6;
-}
-
-/* Ensure Font Awesome is loaded */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-
-/* Global Styles */
+/* تطبيق خط Cairo على كامل الصفحة */
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
     font-family: 'Cairo', sans-serif;
 }
 
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-a:hover {
-    color: var(--secondary-color);
-}
-
-.icon {
-    color: var(--secondary-color);
-    transition: color 0.3s;
-}
-
-.icon:hover {
-    color: var(--accent-color);
-}
-
+/* تخصيص شريط التنقل */
 .navbar {
-    background-color: var(--primary-color);
+    background-color: #343a40;
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+.navbar-brand img {
+    width: 85px; /* زيادة حجم اللوجو */
+    height: 85px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px; /* مسافة بين اللوجو والمعلومات */
+}
+.school-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.school-name {
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 30px;
+}
+.school-contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /* margin-top: 10px; */
+    margin-right: 15px;
+}
+.school-contact a {
+    color: #fff;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+.school-contact a:hover {
+    color: #f0ad4e;
+}
+.school-contact span {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 1rem;
+}
+.school-contact i {
+    margin-left: 5px;
 }
 
-.navbar a {
+.navbar-nav .nav-link {
     color: #fff !important;
-    font-weight: 600;
+    margin-right: 15px;
 }
-
-.navbar a:hover {
-    color: var(--secondary-color) !important;
-}
-
-.footer {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 40px 0;
-}
-
-.footer a {
-    color: #fff;
+.navbar-nav .nav-link:hover {
+    color: #f0ad4e !important;
     transition: color 0.3s;
 }
 
-.footer a:hover {
-    color: var(--secondary-color);
-}
-
-.btn-custom {
-    background-color: var(--secondary-color);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    transition: background-color 0.3s;
-}
-
-.btn-custom:hover {
-    background-color: var(--accent-color);
-    color: #fff;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px;
-}
-
-.section {
-    padding: 60px 0;
-}
-
-.section img {
+/* تخصيص السلايدر */
+.swiper {
     width: 100%;
-    height: auto;
+    height: 600px;
+}
+.swiper-slide {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+.slide-text {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 40%;
+}
+.slide-text h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.slide-text p {
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-.section h2 {
-    margin-top: 20px;
-    color: var(--primary-color);
-    font-weight: 700;
+/* تأثيرات الأنيميشن */
+.slide-text {
+    animation: fadeInUp 1s ease-out;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.section p {
-    margin-top: 15px;
-    line-height: 1.6;
-    color: var(--text-color);
-}
-
-ul {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
-.accordion-button {
-    background-color: var(--secondary-color);
+/* تخصيص شريط الأخبار */
+.news-ticker {
+    background-color: #343a40;
     color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 10px 0;
+    position: relative;
+    direction: ltr; /* لضمان حركة من اليسار إلى اليمين */
+}
+.news-ticker .news-content {
+    display: inline-block;
+    transform: translateX(-100%);
+    animation: ticker-left-to-right 300s linear infinite; /* تباطؤ السرعة */
+}
+.news-ticker .news-item {
+    display: inline-block;
+    margin-right: 50px; /* الفاصل بين الأخبار */
+    direction: rtl; /* لضمان قراءة النص العربي بشكل صحيح */
+}
+@keyframes ticker-left-to-right {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
-.accordion-button:not(.collapsed) {
-    background-color: var(--accent-color);
-    color: #fff;
-}
-
-.accordion-body {
-    background-color: #fff;
-    color: var(--text-color);
-}
-
-@media (max-width: 1000px) {
-    .navbar .d-flex {
-        flex-direction: column;
-        align-items: flex-start;
+/* تحسين الاستجابة للأجهزة المحمولة */
+@media (max-width: 768px) {
+    .slide-text {
+        max-width: 80%;
+        right: 20px;
+        bottom: 20px;
+        padding: 15px;
+    }
+    .slide-text h2 {
+        font-size: 1.5rem;
+    }
+    .slide-text p {
+        font-size: 0.9rem;
+    }
+    .news-ticker .news-content {
+        animation: ticker-left-to-right 200s linear infinite; /* تباطؤ السرعة على الشاشات الصغيرة */
+    }
+    .news-ticker .news-item {
+        margin-right: 30px;
+        font-size: 0.9rem;
+    }
+    .navbar-brand img {
+        width: 30px;
+        height: 30px;
+    }
+    .school-name {
+        font-size: 1.2rem;
+    }
+    .school-contact a {
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+    .school-contact span {
+        font-size: 0.9rem;
+        margin-right: 10px;
     }
 }
