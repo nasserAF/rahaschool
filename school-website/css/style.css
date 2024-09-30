@@ -18,7 +18,7 @@
 
 /* Global Styles */
 body {
-    font-family: 'Jazeera Light', sans-serif !important;
+    font-family: 'Jazeera Light', 'sans-serif' !important;
     background-color: var(--background-color);
     color: var(--text-color);
     direction: rtl;
