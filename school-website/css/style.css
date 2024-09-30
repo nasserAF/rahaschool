@@ -14,7 +14,8 @@
 /* تعريف الخط المخصص */
 @font-face {
   font-family: 'Jazeera Light' !important;
-  src: url('fonts/jazeera-light.ttf') format('truetype');
+    
+  src: url('/rahaschool/public/fonts/jazeera-light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
