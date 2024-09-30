@@ -10,7 +10,7 @@
 
 /* تعريف الخط المخصص */
 @font-face {
-  font-family: 'Jazeera Light', sans-serif;
+  font-family: 'Jazeera Light', 'sans-serif';
   src: url('../public/fonts/jazeera-light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
