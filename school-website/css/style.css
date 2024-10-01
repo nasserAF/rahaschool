@@ -11,14 +11,14 @@
 /* تعريف الخط المخصص */
 @font-face {
   font-family: 'Jazeera Light', 'sans-serif';
-  src: url('../public/fonts/jazeera-light.ttf') format('truetype');
+  font-family: 'Jazeera Light', sans-serif !important;
   font-weight: normal;
   font-style: normal;
 }
 
 /* Global Styles */
 body {
-    font-family: 'Jazeera Light', 'sans-serif' !important;
+    font-family: 'Jazeera Light', sans-serif !important;
     background-color: var(--background-color);
     color: var(--text-color);
     direction: rtl;
