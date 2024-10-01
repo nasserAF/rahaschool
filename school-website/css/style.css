@@ -8,13 +8,19 @@
     --light-text: #95A5A6;
 }
 
-/* تعريف الخط المخصص */
 @font-face {
-  font-family: 'Jazeera Light', 'sans-serif';
-  font-family: 'Jazeera Light', sans-serif !important;
-  font-weight: normal;
-  font-style: normal;
-}
+            font-family: 'Jazeera Light';
+            src: url('fonts/JAZEERA.TTF') format('truetype'),
+                 url('fonts/JAZEERA.woff') format('woff'),
+                 url('fonts/JAZEERA.woff2') format('woff2'),
+                 url('fonts/JAZEERA.eot');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, p, a, div, span, button, input, textarea, select {
+            font-family: 'Jazeera Light', sans-serif !important;
+        }
 
 /* Global Styles */
 body {
