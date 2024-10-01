@@ -1,5 +1,7 @@
 /* faq.css */
-
+body{
+font-family: 'Jazeera Light', sans-serif !important;
+}
 .accordion-button {
     background-color: var(--secondary-color);
     color: #fff;
