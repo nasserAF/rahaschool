@@ -1,15 +1,19 @@
 /* faq.css */
 
 @font-face {
-    font-family: 'Jazeera';
-    src: url('../fonts/JAZEERA.TTF') format('truetype'), /* Safari, Android, iOS */
+    font-family: 'JAZEERA';
+    src: url('../fonts/JAZEERA.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/JAZEERA.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/JAZEERA.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/JAZEERA.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/JAZEERA.ttf') format('truetype'); /* Safari, Android, iOS */
     font-weight: normal;
     font-style: normal;
 }
 
 
 body {
-    font-family: 'Jazeera', sans-serif;
+    font-family: 'JAZEERA', sans-serif;
 }
 
 
