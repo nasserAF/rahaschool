@@ -1,7 +1,23 @@
 /* faq.css */
-body{
-font-family: 'Jazeera Light', sans-serif !important;
+
+@font-face {
+    font-family: 'Jazeera Light';
+    src: url('../fonts/jazeera-light.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/jazeera-light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/jazeera-light.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/jazeera-light.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/jazeera-light.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/jazeera-light.svg#JazeeraLight') format('svg'); /* Legacy iOS */
+    font-weight: normal;
+    font-style: normal;
 }
+
+
+body {
+    font-family: 'Jazeera Light', sans-serif;
+}
+
+
 .accordion-button {
     background-color: var(--secondary-color);
     color: #fff;
